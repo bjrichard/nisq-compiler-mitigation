@@ -61,3 +61,27 @@ The repository is organized to separate **planning**, **source code**, **experim
 │       └── ci.yml
 ├── README.md
 └── requirements.txt / environment.yml / pyproject.toml
+
+---
+
+## Daily AI Check-In Loop (Mandatory)
+
+Each execution day must include an explicit interaction with AI, following this sequence:
+
+1. **Pre-coding check-in**
+   - State the day number and exercise name.
+   - Restate, in your own words, what you intend to implement.
+   - Ask for confirmation that the scope is appropriate.
+
+2. **Post-coding review**
+   - After completing the coding task, present:
+     - the code (or a summary and link)
+     - the test status
+   - Run the specified AI review prompt(s).
+   - Request critique focused on correctness, design, and clarity.
+
+3. **Commit confirmation**
+   - State the exact commit message you intend to use.
+   - Confirm whether the changes align with the week’s goals.
+
+This daily interaction is considered part of the task completion.
