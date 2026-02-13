@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 class Qubit:
     """Logical qubit identified by a non-negative integer index."""
 
