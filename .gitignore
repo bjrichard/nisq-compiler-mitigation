@@ -1,2 +1,19 @@
 # Local personal notes
 CHEATSHEET_LOCAL.md
+
+# MacOS
+.DS_Store
+
+# Local scratch
+SANDBOX.py
+
+# Python caches
+__pycache__/
+*.pyc
+
+# Packaging artifacts
+*.egg-info/
+
+# Conda / env artifacts (optional)
+.env
+.venv
