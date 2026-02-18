@@ -13,7 +13,7 @@ Provide critique only.
 
 ---
 
-# Class Review Prompt
+# Gate Review Prompt
 
 Critique the Gate class design for later compilation passes and noise modeling.
 
@@ -22,6 +22,15 @@ List:
 - potential weaknesses
 - edge cases
 - suggested additional tests
+
+Do not rewrite the implementation.
+
+---
+
+# Circuit Review Prompt
+- Review this Circuit class as an IR for compilation passes.
+- Evaluate invariants, mutability choice, and API clarity.
+- Suggest edge cases and tests.
 
 Do not rewrite the implementation.
 
