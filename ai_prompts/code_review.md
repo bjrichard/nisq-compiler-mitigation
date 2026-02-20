@@ -24,14 +24,28 @@ List:
 - suggested additional tests
 
 Do not rewrite the implementation.
+Provide critique only.
 
 ---
 
 # Circuit Review Prompt
+
 - Review this Circuit class as an IR for compilation passes.
 - Evaluate invariants, mutability choice, and API clarity.
 - Suggest edge cases and tests.
 
 Do not rewrite the implementation.
+Provide critique only.
+
+---
+
+# Example Script Review Prompt
+
+- Does this example demonstrate the intended circuit application programming interface clearly?
+- Is it minimal but realistic for later compilation passes?
+- List any confusing naming or structure.
+
+Do not rewrite the implementation.
+Provide critique only.
 
 ---
