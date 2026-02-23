@@ -49,3 +49,16 @@ Do not rewrite the implementation.
 Provide critique only.
 
 ---
+
+# CompilerPass Design Review Prompt
+
+Review this CompilerPass Protocol and CompilerPassBase design.
+
+- Is primitive-only config enforcement appropriate?
+- Is the separation between Protocol and Base clean?
+- Are there missing elements required for a PassManager?
+
+Do not rewrite the implementation.
+Provide critique only.
+
+---
