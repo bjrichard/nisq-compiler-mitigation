@@ -1,7 +1,13 @@
 from __future__ import annotations
 
-from typing import Protocol
+"""
+Pass abstractions.
 
+- CompilerPass: structural interface (Protocol) for any pass implementation.
+- CompilerPassBase: optional base class providing common behavior and config validation.
+"""
+
+from typing import Protocol
 from qc_compiler.circuits.circuit import Circuit
 
 class CompilerPass(Protocol):
@@ -64,7 +70,7 @@ class CompilerPass(Protocol):
         """
         ...
 
-class CompilerPassBase:
+class BaseCompilerPass:
     """
     Default base class implementing shared compiler pass behavior.
     Compiler passes transform circuits.
@@ -94,7 +100,7 @@ class CompilerPassBase:
             Initializes internal state for the compiler pass.
         """
         if not isinstance(name, str) or name.strip() == "":
-            raise ValueError("name must be a non-empty string.")
+            raise ValueError("Name must be a non-empty string.")
         self._name = name
 
     @property
@@ -169,7 +175,7 @@ class CompilerPassBase:
                 )
 
     @property
-    def validated_config(self) -> dict[str, bool | int | float | str]:
+    def config_validated(self) -> dict[str, bool | int | float | str]:
         """
         Return validated configuration metadata for the pass.
 
@@ -204,5 +210,5 @@ class CompilerPassBase:
         # type(self).__name__ <-> self.__class__.__name__
         return (
             f"{type(self).__name__}(name={self.name!r}, "
-            f"config={self.validated_config!r})"
+            f"config={self.config_validated!r})"
         )

@@ -1,10 +1,11 @@
 import pytest
-from qc_compiler.compilation import CompilerPass, CompilerPassBase
+
+from qc_compiler.compilation import BaseCompilerPass, CompilerPass
 from qc_compiler.circuits import Circuit
 
 
-class DummyConfiguredPass(CompilerPassBase):
-    """Minimal concrete pass for testing base behavior."""
+class DummyConfiguredPass(BaseCompilerPass):
+    """Minimal concrete pass for testing BaseCompilerPass behavior."""
 
     def __init__(self, threshold: float) -> None:
         super().__init__(name="dummy_configured")
@@ -21,42 +22,7 @@ class DummyConfiguredPass(CompilerPassBase):
         return Circuit()
 
 
-def test_base_requires_non_empty_name() -> None:
-    """CompilerPassBase rejects empty or whitespace-only names."""
-    try:
-        _ = CompilerPassBase(name="")
-        assert False, "Expected ValueError"
-    except ValueError:
-        pass
-    # Condensed version:
-    #with pytest.raises(ValueError):
-        #_ = CompilerPass(name="")
-
-
-def test_base_repr_includes_class_name_name_and_config() -> None:
-    """__repr__ includes subclass name, pass name, and config."""
-    p = DummyConfiguredPass(threshold=0.5)
-    r = repr(p)
-    assert "DummyConfiguredPass" in r
-    assert "dummy_configured" in r
-    assert "threshold" in r
-
-
-def test_dummy_configured_pass_satisfies_protocol() -> None:
-    """DummyConfiguredPass can be treated as a CompilerPass."""
-    p: CompilerPass = DummyConfiguredPass(threshold=0.25)
-    out = p.run(Circuit())
-    assert isinstance(out, Circuit)
-
-
-def test_config_values_are_primitives() -> None:
-    """Pass config values are restricted to primitive types."""
-    p = DummyConfiguredPass(threshold=1.0)
-    for value in p.config.values():
-        assert isinstance(value, (bool, int, float, str))
-
-
-class BadConfigPass(CompilerPassBase):
+class BadConfigPass(BaseCompilerPass):
     """Pass with invalid (non-primitive) config for testing enforcement."""
 
     def __init__(self) -> None:
@@ -73,8 +39,39 @@ class BadConfigPass(CompilerPassBase):
         return Circuit()
 
 
-def test_validated_config_rejects_non_primitives() -> None:
-    """validated_config raises TypeError when config contains non-primitive values."""
+def test_base_requires_non_empty_name() -> None:
+    """BaseCompilerPass rejects empty or whitespace-only names."""
+    with pytest.raises(ValueError):
+        _ = BaseCompilerPass(name="")
+
+    with pytest.raises(ValueError):
+        _ = BaseCompilerPass(name="   ")
+
+
+def test_base_repr_includes_class_name_name_and_config() -> None:
+    """__repr__ includes subclass name, pass name, and validated config."""
+    p = DummyConfiguredPass(threshold=0.5)
+    r = repr(p)
+    assert "DummyConfiguredPass" in r
+    assert "dummy_configured" in r
+    assert "threshold" in r
+
+
+def test_dummy_configured_pass_satisfies_protocol() -> None:
+    """DummyConfiguredPass can be used where a CompilerPass is expected."""
+    p: CompilerPass = DummyConfiguredPass(threshold=0.25)
+    out = p.run(Circuit())
+    assert isinstance(out, Circuit)
+
+
+def test_config_validated_returns_expected_mapping() -> None:
+    """config_validated returns a validated copy of the config mapping."""
+    p = DummyConfiguredPass(threshold=1.0)
+    assert p.config_validated == {"threshold": 1.0}
+
+
+def test_config_validated_rejects_non_primitives() -> None:
+    """config_validated raises TypeError when config contains non-primitive values."""
     p = BadConfigPass()
     with pytest.raises(TypeError):
-        _ = p.validated_config
+        _ = p.config_validated
