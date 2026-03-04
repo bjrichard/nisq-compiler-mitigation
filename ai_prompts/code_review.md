@@ -62,3 +62,20 @@ Do not rewrite the implementation.
 Provide critique only.
 
 ---
+
+# PassManager Review Prompt
+
+Review this PassManager implementation for correctness and extensibility in a compiler pipeline.
+
+Specifically evaluate:
+- Whether pass validation is appropriate given a Protocol-based pass contract
+- Whether sequential execution order is correct and clearly implemented
+- Whether the API makes it easy to log pass names and configuration for reproducibility
+- Whether error messages are clear for invalid passes and invalid circuit inputs
+
+Suggest:
+- One improvement
+- One additional test case
+
+Do not rewrite the implementation.
+Provide critique only.
