@@ -1,3 +1,4 @@
-from .pass_base import CompilerPass, CompilerPassBase
+from .pass_base import CompilerPass, BaseCompilerPass
+from .pass_manager import PassManager
 
-__all__ = ["CompilerPass", "BaseCompilerPass"]
+__all__ = ["CompilerPass", "BaseCompilerPass", "PassManager"]
