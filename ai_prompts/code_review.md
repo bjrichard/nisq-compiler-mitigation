@@ -79,3 +79,20 @@ Suggest:
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Cancel Adjacent Inverses Pass Review Prompt
+
+Review the CancelAdjacentInversesPass for correctness and edge cases.
+
+Specifically evaluate:
+- Whether the cancellation conditions are too strict or too loose
+- Whether target matching logic is correct
+- Whether parameter handling is safe
+- Whether the pass correctly avoids mutating the input circuit
+
+Suggest one additional test.
+
+Do not rewrite the implementation.
+Provide critique only.
