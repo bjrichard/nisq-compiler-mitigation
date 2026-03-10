@@ -96,3 +96,19 @@ Suggest one additional test.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Compilation Metrics Review Prompt
+
+Review these compilation metrics functions for correctness and usefulness.
+
+Specifically evaluate:
+- whether the metrics are well-defined
+- whether edge cases are handled correctly
+- whether the interfaces are clear for later benchmarking work
+
+Suggest one additional metric that would be valuable next.
+
+Do not rewrite the implementation.
+Provide critique only.
