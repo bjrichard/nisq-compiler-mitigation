@@ -45,7 +45,7 @@ def gate_counts_by_name(circuit: Circuit) -> dict[str, int]:
             counts[gate.name] = 0
         counts[gate.name] += 1
 
-    return dict(counts)
+    return counts
 
 
 def two_qubit_gate_count(circuit: Circuit) -> int:
