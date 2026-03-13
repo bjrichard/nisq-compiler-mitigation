@@ -11,12 +11,12 @@ class Circuit:
         Create an empty circuit.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : None
             This constructor initializes an empty circuit instance.
         """
@@ -28,12 +28,12 @@ class Circuit:
         Return the ordered list of gates in the circuit.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : list[Gate]
             Copy of the ordered list of gates in the circuit.
         """
@@ -44,12 +44,12 @@ class Circuit:
         Append a gate to the end of the circuit.
 
         Input(s)
-        ----------
+        --------
         - gate : Gate
             Gate to append to the circuit.
 
         Output(s)
-        -------
+        ---------
         - return_value : None
             The circuit is updated in-place by appending the gate.
         """
@@ -62,12 +62,12 @@ class Circuit:
         Return the register size implied by qubit indices.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : int
             If the circuit is empty, returns 0. Otherwise returns max qubit index + 1.
         """
@@ -87,12 +87,12 @@ class Circuit:
         Return the number of unique qubits referenced in the circuit.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : int
             Count of unique qubit indices appearing in the circuit.
         """
@@ -107,12 +107,12 @@ class Circuit:
         Return a debug representation of the circuit.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : str
             String representation suitable for debugging.
         """

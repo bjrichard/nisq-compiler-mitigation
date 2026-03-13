@@ -15,7 +15,7 @@ class Gate:
         Create a quantum gate operation.
 
         Input(s)
-        ----------
+        --------
         - name : str
             Gate identifier (e.g., "X", "Z", "CX"). Must be non-empty.
         - targets : list[Qubit]
@@ -24,7 +24,7 @@ class Gate:
             Optional parameter dictionary (e.g., {"theta": 1.23}). If None, treated as empty.
 
         Output(s)
-        -------
+        ---------
         - return_value : None
             This constructor initializes the gate instance.
         """
@@ -60,12 +60,12 @@ class Gate:
         Return the gate name.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : str
             Gate identifier string.
         """
@@ -77,12 +77,12 @@ class Gate:
         Return the target qubits.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : list[Qubit]
             Copy of the target qubits list.
         """

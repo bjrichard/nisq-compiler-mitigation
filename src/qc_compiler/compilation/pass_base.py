@@ -24,12 +24,12 @@ class CompilerPass(Protocol):
         Return the pass name.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : str
             Human-readable identifier for the pass.
         """
@@ -41,12 +41,12 @@ class CompilerPass(Protocol):
         Return pass configuration metadata.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : dict[str, bool | int | float | str]
             Dictionary containing primitive configuration values.
             Values must be JSON-serializable primitives.
@@ -58,13 +58,13 @@ class CompilerPass(Protocol):
         Transform a circuit and return a new circuit.
 
         Input(s)
-        ----------
+        --------
         - circuit : Circuit
             Input circuit to be transformed. Implementations must not
             mutate the input circuit.
 
         Output(s)
-        -------
+        ---------
         - return_value : Circuit
             A new Circuit instance representing the transformed circuit.
         """
@@ -90,12 +90,12 @@ class BaseCompilerPass:
         Initialize a compiler pass base instance.
 
         Input(s)
-        ----------
+        --------
         - name : str
             Human-readable identifier for the pass. Must be non-empty.
 
         Output(s)
-        -------
+        ---------
         - return_value : None
             Initializes internal state for the compiler pass.
         """
@@ -109,12 +109,12 @@ class BaseCompilerPass:
         Return the pass name.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : str
             Human-readable identifier for the pass.
         """
@@ -126,12 +126,12 @@ class BaseCompilerPass:
         Return pass configuration metadata for logging and reproducibility.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : dict[str, bool | int | float | str]
             Dictionary of configuration values using primitive types only.
             Default implementation returns an empty dictionary.
@@ -143,12 +143,12 @@ class BaseCompilerPass:
         Transform a circuit and return the new, transformed circuit.
 
         Input(s)
-        ----------
+        --------
         - circuit : Circuit
             Input circuit to be transformed. Implementations must not mutate it.
 
         Output(s)
-        -------
+        ---------
         - return_value : Circuit
             Transformed circuit. Implementations must return a new Circuit instance.
         """
@@ -159,12 +159,12 @@ class BaseCompilerPass:
         Validate that config values are primitive types only.
 
         Input(s)
-        ----------
+        --------
         - config : dict[str, bool | int | float | str]
             Configuration dictionary to validate.
 
         Output(s)
-        -------
+        ---------
         - return_value : None
             Raises TypeError if any value is not a primitive type.
         """
@@ -180,12 +180,12 @@ class BaseCompilerPass:
         Return validated configuration metadata for the pass.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : dict[str, bool | int | float | str]
             Configuration dictionary after enforcing primitive-only value types.
         """
@@ -198,12 +198,12 @@ class BaseCompilerPass:
         Return a debug representation of the compiler pass.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : str
             String representation suitable for debugging.
         """

@@ -30,12 +30,12 @@ class Qubit:
         Return the qubit index.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : int
             The non-negative integer identifier for the qubit.
         """
@@ -46,12 +46,12 @@ class Qubit:
         Check equality with another object.
 
         Input(s)
-        ----------
+        --------
         - other : object
             Object to compare against.
 
         Output(s)
-        -------
+        ---------
         - return_value : bool
             True if other is a Qubit with the same index, else False.
         """
@@ -64,12 +64,12 @@ class Qubit:
         Return a debug representation of the qubit.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : str
             String representation suitable for debugging.
         """
