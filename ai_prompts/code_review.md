@@ -112,3 +112,19 @@ Suggest one additional metric that would be valuable next.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Benchmark Compilation Script Review Prompt
+
+Review this benchmark script for clarity, correctness, and usefulness.
+
+Specifically evaluate:
+- whether the benchmark demonstrates the compiler pass clearly
+- whether the printed metrics are sufficient for a first experiment
+- whether the script structure is appropriate for future benchmarking work
+
+Suggest one additional metric or output that would improve the script.
+
+Do not rewrite the implementation.
+Provide critique only.
