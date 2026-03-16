@@ -34,3 +34,10 @@ def test_noise_model_has_name_property() -> None:
     """Noise model exposes a readable name."""
     m = DummyNoiseModel()
     assert m.name == "dummy_noise"
+
+
+def test_noise_model_default_config_is_empty_dict() -> None:
+    """BaseNoiseModel provides an empty default config."""
+    m = DummyNoiseModel()
+    assert m.config == {}
+    assert m.config_validated == {}
