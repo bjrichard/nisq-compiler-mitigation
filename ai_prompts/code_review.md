@@ -128,3 +128,20 @@ Suggest one additional metric or output that would improve the script.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Noise Model Abstraction Review Prompt
+
+Review this noise model abstraction for clarity, extensibility, and consistency with the compiler pass architecture.
+
+Specifically evaluate:
+- whether the Protocol and base class separation is appropriate
+- whether the `apply(circuit)` interface is well chosen
+- whether the naming and invariants are clear
+- whether this design will support future concrete noise models cleanly
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
