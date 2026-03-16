@@ -152,7 +152,7 @@ class BaseCompilerPass:
         - return_value : Circuit
             Transformed circuit. Implementations must return a new Circuit instance.
         """
-        raise NotImplementedError("CompilerPassBase subclasses must implement run().")
+        raise NotImplementedError("BaseCompilerPass subclasses must implement run().")
 
     def _validate_config(self, config: dict[str, bool | int | float | str]) -> None:
         """
