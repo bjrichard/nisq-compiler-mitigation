@@ -145,3 +145,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Measurement Noise Model Review Prompt
+
+Review this measurement noise model for clarity, correctness, and future extensibility.
+
+Specifically evaluate:
+- whether the `apply(circuit)` interface is appropriate
+- whether inserting synthetic `READOUT_FLIP` gates is a reasonable first design
+- whether edge cases around measurement handling are covered
+- whether this model will integrate cleanly with future mitigation work
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
