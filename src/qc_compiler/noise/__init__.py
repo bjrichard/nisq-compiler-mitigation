@@ -1,6 +1,8 @@
-from .noise_model import NoiseModel, BaseNoiseModel
+from .measurement_noise import MeasurementNoiseModel
+from .noise_model import BaseNoiseModel, NoiseModel
 
 __all__ = [
-    "NoiseModel",
     "BaseNoiseModel",
+    "NoiseModel",
+    "MeasurementNoiseModel",
 ]
