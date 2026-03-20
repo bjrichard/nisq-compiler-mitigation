@@ -162,3 +162,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Readout Sampling Review Prompt
+
+Review these readout sampling utilities for clarity, correctness, and suitability for early measurement-noise experiments.
+
+Specifically evaluate:
+- whether the interpretation of READOUT_FLIP and MEASURE is internally consistent
+- whether the interfaces are minimal but sufficient
+- whether edge cases are covered appropriately
+- whether this design will support confusion-matrix estimation later
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
