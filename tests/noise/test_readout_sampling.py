@@ -50,3 +50,18 @@ def test_bitstring_from_readout_rejects_invalid_values() -> None:
     """bitstring_from_readout rejects non-binary bit values."""
     with pytest.raises(ValueError):
         _ = bitstring_from_readout({0: 2})
+
+
+def test_sample_readout_ignores_unmeasured_flipped_qubits() -> None:
+    """Unmeasured qubits do not appear in the returned readout mapping."""
+    q0 = Qubit(0)
+    circuit = Circuit()
+    circuit.add_gate(Gate(name="READOUT_FLIP", targets=[q0]))
+
+    assert sample_readout(circuit) == {}
+
+
+def test_bitstring_from_readout_rejects_non_integer_keys() -> None:
+    """bitstring_from_readout rejects non-integer keys."""
+    with pytest.raises(TypeError):
+        _ = bitstring_from_readout({"0": 1})  # type: ignore[dict-item]
