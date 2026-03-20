@@ -17,7 +17,7 @@ class Gate:
         Input(s)
         --------
         - name : str
-            Gate identifier (e.g., "X", "Z", "CX"). Must be non-empty.
+            Gate identifier (e.g., "X", "Z", "CX", "MEASURE", "READOUT_FLIP"). Must be non-empty.
         - targets : list[Qubit]
             Target qubits the gate applies to. Must be non-empty and contain unique qubits.
         - params : dict[str, float | int] | None
@@ -94,12 +94,12 @@ class Gate:
         Return gate parameters.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : dict[str, float | int]
             Copy of the parameter dictionary.
         """
@@ -110,12 +110,12 @@ class Gate:
         Return a debug representation of the gate.
 
         Input(s)
-        ----------
+        --------
         - parameter : None
             No inputs.
 
         Output(s)
-        -------
+        ---------
         - return_value : str
             String representation suitable for debugging.
         """
