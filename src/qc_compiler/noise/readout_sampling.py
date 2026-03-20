@@ -23,6 +23,7 @@ def sample_readout(circuit: Circuit) -> dict[int, int]:
         raise TypeError("circuit must be a Circuit instance.")
 
     bit_values: dict[int, int] = {}
+    measured_indices: set[int] = set()
 
     for gate in circuit.gates:
         if gate.name == "READOUT_FLIP":
@@ -32,9 +33,10 @@ def sample_readout(circuit: Circuit) -> dict[int, int]:
 
         elif gate.name == "MEASURE":
             for target in gate.targets:
+                measured_indices.add(target.index)
                 bit_values.setdefault(target.index, 0)
 
-    return dict(bit_values)
+    return {index: bit_values[index] for index in sorted(measured_indices)}
 
 
 def bitstring_from_readout(readout: dict[int, int]) -> str:
@@ -55,14 +57,10 @@ def bitstring_from_readout(readout: dict[int, int]) -> str:
     if not isinstance(readout, dict):
         raise TypeError("readout must be a dictionary.")
 
-    if len(readout) == 0:
-        return ""
-
     for key, value in readout.items():
         if not isinstance(key, int):
             raise TypeError("readout keys must be integers.")
         if value not in {0, 1}:
             raise ValueError("readout values must be 0 or 1.")
 
-    ordered_indices = sorted(readout.keys())
-    return "".join(str(readout[index]) for index in ordered_indices)
+    return "".join(str(value) for _, value in sorted(readout.items()))
