@@ -179,3 +179,19 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Confusion Matrix Review Prompt
+
+Review this confusion matrix implementation for correctness and clarity.
+
+Specifically evaluate:
+- whether the mapping between flip probability and matrix entries is correct
+- whether the interface is appropriate for later mitigation use
+- whether the representation (dict vs array) is sufficient
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
