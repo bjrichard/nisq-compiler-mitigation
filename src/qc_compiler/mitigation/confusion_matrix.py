@@ -16,10 +16,10 @@ def single_qubit_confusion_matrix(flip_probability: float) -> list[list[float]]:
     ---------
     - return_value : list[list[float]]
         Two-by-two matrix where entry (i, j) is the probability of observing
-        state j when state i was the true value:
+        state i when state j was the true value:
         p00 = P(measure 0 | true 0)
-        p01 = P(measure 1 | true 0)
-        p10 = P(measure 0 | true 1)
+        p01 = P(measure 0 | true 1)
+        p10 = P(measure 1 | true 0)
         p11 = P(measure 1 | true 1)
     """
     if not isinstance(flip_probability, (int, float)):
