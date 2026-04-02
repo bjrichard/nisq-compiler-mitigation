@@ -7,5 +7,5 @@ __all__ = [
     "NoiseModel",
     "MeasurementNoiseModel",
     "sample_readout",
-    "bitstring_from_readout"
+    "bitstring_from_readout",
 ]
