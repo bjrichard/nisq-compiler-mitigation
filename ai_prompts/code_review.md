@@ -195,3 +195,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Readout Mitigation Review Prompt
+
+Review this single-qubit readout error mitigation implementation for correctness, numerical stability, and architectural clarity.
+
+Specifically evaluate:
+- whether the 2x2 matrix inversion logic is correct
+- whether singular-matrix handling is appropriate
+- whether `mitigate_single_qubit_counts` correctly maps observed counts to mitigated probabilities
+- whether the interfaces are suitable for later extension to multi-qubit mitigation
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
