@@ -212,3 +212,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Multi-Shot Sampling Review Prompt
+
+Review these multi-shot sampling utilities for clarity, correctness, and architectural placement.
+
+Specifically evaluate:
+- whether `sample_counts` is implemented correctly
+- whether repeated sampling is handled cleanly
+- whether the `execution` module is the right home for this functionality
+- whether the interface is appropriate for later experiment and mitigation work
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
