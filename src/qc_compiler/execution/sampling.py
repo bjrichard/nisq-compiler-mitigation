@@ -34,9 +34,6 @@ def sample_counts(circuit: Circuit, shots: int) -> dict[str, int]:
     for _ in range(shots):
         readout = sample_readout(circuit)
         bitstring = bitstring_from_readout(readout)
-
-        if bitstring not in counts:
-            counts[bitstring] = 0
-        counts[bitstring] += 1
+        counts[bitstring] = counts.get(bitstring, 0) + 1
 
     return dict(counts)
