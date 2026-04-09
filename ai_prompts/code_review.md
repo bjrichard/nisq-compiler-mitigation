@@ -229,3 +229,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Readout Mitigation Demo Review Prompt
+
+Review this readout mitigation demo for clarity, correctness, and usefulness as a first end-to-end experiment.
+
+Specifically evaluate:
+- whether the ideal, noisy, and mitigated stages are clearly separated
+- whether noisy counts are sampled correctly on a per-shot basis
+- whether the demo accurately illustrates the value of mitigation
+- whether the helper functions are appropriately scoped
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
