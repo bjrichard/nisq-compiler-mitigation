@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 from qc_compiler.circuits import Circuit, Gate, Qubit
-from qc_compiler.execution import sample_counts
+from qc_compiler.noise.readout_sampling import sample_readout, bitstring_from_readout
+from qc_compiler.noise import NoiseModel, MeasurementNoiseModel
 from qc_compiler.mitigation import (
-    confusion_matrix_from_model,
-    mitigate_single_qubit_counts,
-)
-from qc_compiler.noise import MeasurementNoiseModel
+                                    confusion_matrix_from_model,
+                                    mitigate_single_qubit_counts,
+                                   )
 
 
 def build_single_qubit_measurement_circuit() -> Circuit:
@@ -44,7 +44,17 @@ def normalize_counts(counts: dict[str, int]) -> dict[str, float]:
         Mapping from bitstring to empirical probability.
     """
     if not isinstance(counts, dict):
-        raise TypeError("counts must be a dictionary.")
+        raise TypeError(
+            "counts must be a dictionary with bitstrings as keys and integer counts as values."
+        )
+
+    for bitstring, count in counts.items():
+        if not isinstance(bitstring, str):
+            raise TypeError("bitstring keys must be strings.")
+        if not isinstance(count, int):
+            raise TypeError("count values must be integers.")
+        if count < 0:
+            raise ValueError("count values must be non-negative.")
 
     total = sum(counts.values())
     if total <= 0:
@@ -52,11 +62,40 @@ def normalize_counts(counts: dict[str, int]) -> dict[str, float]:
 
     return {bitstring: count / total for bitstring, count in counts.items()}
 
+def sample_noisy_bitstring(
+                           circuit: Circuit,
+                           noise_model: NoiseModel | None = None,
+                          ) -> str:
+    """
+    Sample a single bitstring outcome from an ideal or noisy circuit.
+
+    Input(s)
+    --------
+    - circuit : Circuit
+        Ideal circuit to sample.
+    - noise_model : NoiseModel | None
+        Optional noise model applied independently to this shot.
+
+    Output(s)
+    ---------
+    - return_value : str
+        Bitstring sampled from the circuit after optional noise application.
+    """
+    if not isinstance(circuit, Circuit):
+        raise TypeError("circuit must be a Circuit instance.")
+
+    if noise_model is not None:
+        sampled_circuit = noise_model.apply(circuit)
+    else:
+        sampled_circuit = circuit
+
+    readout = sample_readout(sampled_circuit)
+    return bitstring_from_readout(readout)
 
 def sample_noisy_counts(
     circuit: Circuit,
-    noise_model: MeasurementNoiseModel,
-    shots: int,
+    noise_model: NoiseModel | None = None,
+    shots: int = 1,
 ) -> dict[str, int]:
     """
     Sample noisy measurement outcomes multiple times.
@@ -77,17 +116,15 @@ def sample_noisy_counts(
     """
     if not isinstance(circuit, Circuit):
         raise TypeError("circuit must be a Circuit instance.")
-    if not isinstance(noise_model, MeasurementNoiseModel):
-        raise TypeError("noise_model must be a MeasurementNoiseModel instance.")
+    if noise_model is not None and not hasattr(noise_model, "apply"):
+        raise TypeError("noise_model must define an apply(circuit) method or be None.")
     if not isinstance(shots, int) or shots <= 0:
         raise ValueError("shots must be a positive integer.")
 
     counts: dict[str, int] = {}
 
     for _ in range(shots):
-        noisy_circuit = noise_model.apply(circuit)
-        shot_counts = sample_counts(noisy_circuit, shots=1)
-        bitstring = next(iter(shot_counts))
+        bitstring = sample_noisy_bitstring(circuit, noise_model)
         counts[bitstring] = counts.get(bitstring, 0) + 1
 
     return counts
@@ -108,9 +145,9 @@ def main() -> None:
         Prints ideal, noisy, and mitigated single-qubit distributions.
     """
     shots = 1000
-    ideal_circuit = build_single_qubit_measurement_circuit()
 
-    ideal_counts = sample_counts(ideal_circuit, shots=shots)
+    ideal_circuit = build_single_qubit_measurement_circuit()
+    ideal_counts = sample_noisy_counts(ideal_circuit, None, shots)
     ideal_probs = normalize_counts(ideal_counts)
 
     noise_model = MeasurementNoiseModel(flip_probability=0.2, seed=123)
