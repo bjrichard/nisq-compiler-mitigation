@@ -246,3 +246,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Noise Sweep Experiment Review Prompt
+
+Review this noise sweep experiment for clarity and correctness.
+
+Specifically evaluate:
+- whether the experimental design properly varies noise levels
+- whether error metrics are meaningful
+- whether the comparison between noisy and mitigated results is clear
+- whether this is a strong basis for plotting and analysis
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
