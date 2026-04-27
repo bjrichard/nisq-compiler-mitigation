@@ -112,8 +112,8 @@ def main() -> None:
         results.append(
             {
                 "flip_probability": flip_probability,
-                "noisy_error": noisy_error,
-                "mitigated_error": mitigated_error,
+                "noisy_error": round(noisy_error, 6),
+                "mitigated_error": round(mitigated_error, 6)
             }
         )
         print(
