@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import csv
+from pathlib import Path
+
 from experiments.scripts.run_readout_mitigation_demo import (
     build_single_qubit_measurement_circuit,
     normalize_counts,
@@ -53,9 +56,39 @@ def run_experiment(flip_probability: float, shots: int = 1000) -> tuple[float, f
     return noisy_error, mitigated_error
 
 
+def save_results(
+    results: list[dict[str, float]],
+    output_path: Path,
+) -> None:
+    """
+    Save noise sweep results to a CSV file.
+
+    Input(s)
+    --------
+    - results : list[dict[str, float]]
+        List of result rows containing flip probability, noisy error, and mitigated error.
+    - output_path : Path
+        File path where the CSV output should be written.
+
+    Output(s)
+    ---------
+    - return_value : None
+        Writes the results to disk.
+    """
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with output_path.open("w", newline="") as csvfile:
+        writer = csv.DictWriter(
+            csvfile,
+            fieldnames=["flip_probability", "noisy_error", "mitigated_error"],
+        )
+        writer.writeheader()
+        writer.writerows(results)
+
+
 def main() -> None:
     """
-    Run a noise sweep and print noisy versus mitigated error.
+    Run a noise sweep, print results, and save them to disk.
 
     Input(s)
     --------
@@ -65,21 +98,34 @@ def main() -> None:
     Output(s)
     ---------
     - return_value : None
-        Prints a table comparing noisy and mitigated error.
+        Prints and saves a table comparing noisy and mitigated error.
     """
     noise_levels = [0.0, 0.05, 0.1, 0.2, 0.3, 0.4]
     shots = 1000
+    results: list[dict[str, float]] = []
 
     print("Flip Prob | Noisy Error | Mitigated Error")
     print("------------------------------------------")
 
     for flip_probability in noise_levels:
         noisy_error, mitigated_error = run_experiment(flip_probability, shots)
+        results.append(
+            {
+                "flip_probability": flip_probability,
+                "noisy_error": noisy_error,
+                "mitigated_error": mitigated_error,
+            }
+        )
         print(
             f"{flip_probability:8.2f} | "
             f"{noisy_error:11.4f} | "
             f"{mitigated_error:16.4f}"
         )
+
+    save_results(
+        results,
+        Path("experiments/results/noise_sweep_results.csv"),
+    )
 
 
 if __name__ == "__main__":

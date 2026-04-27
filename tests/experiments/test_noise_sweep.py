@@ -1,6 +1,8 @@
 import pytest
 
-from experiments.scripts.run_noise_sweep import run_experiment
+from pathlib import Path
+
+from experiments.scripts.run_noise_sweep import run_experiment, save_results
 
 
 def test_run_experiment_returns_two_floats() -> None:
@@ -41,3 +43,22 @@ def test_run_experiment_rejects_non_integer_shots() -> None:
     """run_experiment rejects non-integer shot counts."""
     with pytest.raises(TypeError):
         run_experiment(0.1, shots=100.5)  # type: ignore[arg-type]
+
+
+def test_save_results_writes_csv(tmp_path: Path) -> None:
+    """save_results writes noise sweep rows to a CSV file."""
+    results = [
+        {
+            "flip_probability": 0.1,
+            "noisy_error": 0.1,
+            "mitigated_error": 0.02,
+        }
+    ]
+    output_path = tmp_path / "noise_sweep_results.csv"
+
+    save_results(results, output_path)
+
+    assert output_path.exists()
+    text = output_path.read_text()
+    assert "flip_probability,noisy_error,mitigated_error" in text
+    assert "0.1,0.1,0.02" in text
