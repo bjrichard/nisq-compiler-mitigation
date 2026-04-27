@@ -263,3 +263,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Noise Sweep Results Review Prompt
+
+Review this noise sweep results workflow for clarity, reproducibility, and usefulness for later analysis.
+
+Specifically evaluate:
+- whether CSV is an appropriate output format
+- whether the saved fields are sufficient
+- whether the experiment remains reproducible
+- whether the workflow supports later plotting and reporting
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
