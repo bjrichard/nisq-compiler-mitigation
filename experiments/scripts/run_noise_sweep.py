@@ -19,7 +19,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 RESULTS_PATH = PROJECT_ROOT / "experiments" / "results" / "noise_sweep_results.csv"
 
 
-def run_experiment(flip_probability: float, shots: int = 1000) -> tuple[float, float]:
+def run_experiment(flip_probability: float, shots: int = 5000) -> tuple[float, float]:
     """
     Run one noise-sweep experiment.
 
@@ -49,7 +49,7 @@ def run_experiment(flip_probability: float, shots: int = 1000) -> tuple[float, f
 
     ideal_circuit = build_single_qubit_measurement_circuit()
 
-    noise_model = MeasurementNoiseModel(flip_probability=flip_probability, seed=123)
+    noise_model = MeasurementNoiseModel(flip_probability=flip_probability, seed=None)
     noisy_counts = sample_noisy_counts(ideal_circuit, noise_model, shots)
     noisy_probs = normalize_counts(noisy_counts)
 
@@ -60,6 +60,47 @@ def run_experiment(flip_probability: float, shots: int = 1000) -> tuple[float, f
     mitigated_error = abs(mitigated_probs.get("0", 0.0) - 1.0)
 
     return noisy_error, mitigated_error
+
+
+def average_experiment(
+    flip_probability: float,
+    shots: int,
+    repeats: int,
+) -> tuple[float, float]:
+    """
+    Average noisy and mitigated errors across repeated experiments.
+
+    Input(s)
+    --------
+    - flip_probability : float
+        Probability that a measured bit flips during readout.
+    - shots : int
+        Number of samples used in each repeated experiment.
+    - repeats : int
+        Number of independent repeated experiments to average.
+
+    Output(s)
+    ---------
+    - return_value : tuple[float, float]
+        Pair containing average noisy error and average mitigated error.
+    """
+    if not isinstance(repeats, int):
+        raise TypeError("repeats must be an integer.")
+    if repeats <= 0:
+        raise ValueError("repeats must be greater than 0.")
+
+    noisy_errors: list[float] = []
+    mitigated_errors: list[float] = []
+
+    for _ in range(repeats):
+        noisy_error, mitigated_error = run_experiment(flip_probability, shots)
+        noisy_errors.append(noisy_error)
+        mitigated_errors.append(mitigated_error)
+
+    return (
+        sum(noisy_errors) / repeats,
+        sum(mitigated_errors) / repeats,
+    )
 
 
 def save_results(
@@ -106,20 +147,25 @@ def main() -> None:
     - return_value : None
         Prints and saves a table comparing noisy and mitigated error.
     """
-    noise_levels = [0.0, 0.05, 0.1, 0.2, 0.3, 0.4]
-    shots = 1000
+    noise_levels = [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4]
+    shots = 5000
+    repeats = 5
     results: list[dict[str, float]] = []
 
     print("Flip Prob | Noisy Error | Mitigated Error")
     print("------------------------------------------")
 
     for flip_probability in noise_levels:
-        noisy_error, mitigated_error = run_experiment(flip_probability, shots)
+        noisy_error, mitigated_error = average_experiment(
+            flip_probability,
+            shots,
+            repeats,
+        )
         results.append(
             {
                 "flip_probability": flip_probability,
-                "noisy_error": noisy_error,
-                "mitigated_error": mitigated_error,
+                "noisy_error": round(noisy_error, 6),
+                "mitigated_error": round(mitigated_error, 6),
             }
         )
         print(
