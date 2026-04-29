@@ -280,3 +280,21 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Noise Sweep Visualization Review Prompt
+
+Review this visualization for clarity and effectiveness.
+
+Specifically evaluate:
+- whether the plot clearly communicates the difference between noisy and mitigated error
+- whether axes and labels are appropriate
+- whether this figure is suitable for a technical report
+- whether any additional visual elements would improve interpretability
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+
+Provide critique only.
