@@ -15,6 +15,10 @@ from qc_compiler.mitigation import (
 from qc_compiler.noise import MeasurementNoiseModel
 
 
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+RESULTS_PATH = PROJECT_ROOT / "experiments" / "results" / "noise_sweep_results.csv"
+
+
 def run_experiment(flip_probability: float, shots: int = 1000) -> tuple[float, float]:
     """
     Run one noise-sweep experiment.
@@ -33,9 +37,11 @@ def run_experiment(flip_probability: float, shots: int = 1000) -> tuple[float, f
     """
     if not isinstance(flip_probability, (int, float)):
         raise TypeError("flip_probability must be a number.")
+
     flip_probability = float(flip_probability)
     if flip_probability < 0.0 or flip_probability > 1.0:
         raise ValueError("flip_probability must be a number between 0 and 1.")
+
     if not isinstance(shots, int):
         raise TypeError("shots must be an integer.")
     if shots <= 0:
@@ -112,8 +118,8 @@ def main() -> None:
         results.append(
             {
                 "flip_probability": flip_probability,
-                "noisy_error": round(noisy_error, 6),
-                "mitigated_error": round(mitigated_error, 6)
+                "noisy_error": noisy_error,
+                "mitigated_error": mitigated_error,
             }
         )
         print(
@@ -122,10 +128,7 @@ def main() -> None:
             f"{mitigated_error:16.4f}"
         )
 
-    save_results(
-        results,
-        Path("experiments/results/noise_sweep_results.csv"),
-    )
+    save_results(results, RESULTS_PATH)
 
 
 if __name__ == "__main__":
