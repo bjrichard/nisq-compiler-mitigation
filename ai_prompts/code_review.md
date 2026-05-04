@@ -298,3 +298,20 @@ Suggest one improvement.
 Do not rewrite the implementation.
 
 Provide critique only.
+
+---
+
+# Single-Qubit Statevector Simulator Review Prompt
+
+Review this single-qubit statevector simulator for correctness, scope control, and future extensibility.
+
+Specifically evaluate:
+- whether the implementations of `X`, `Z`, and `H` are mathematically correct
+- whether measurement sampling from state probabilities is handled appropriately
+- whether the simulator scope is clearly limited to single-qubit circuits
+- whether this design can support later integration with noise and mitigation experiments
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
