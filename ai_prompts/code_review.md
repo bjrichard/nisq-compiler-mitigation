@@ -315,3 +315,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Statevector Readout Mitigation Demo Review Prompt
+
+Review this statevector readout mitigation demo for correctness, clarity, and architecture.
+
+Specifically evaluate:
+- whether statevector sampling and readout noise are integrated cleanly
+- whether `MeasurementNoiseModel.apply_to_bitstring` belongs in the noise model layer
+- whether the demo clearly separates ideal, noisy, and mitigated distributions
+- whether this design preserves the general readout demo while adding a statevector-specific path
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
