@@ -69,7 +69,7 @@ class MeasurementNoiseModel(BaseNoiseModel):
         Output(s)
         ---------
         - return_value : Circuit
-            New circuit in which synthetic readout_flip gates may be inserted
+            New circuit in which synthetic READOUT_FLIP gates may be inserted
             immediately before measurement gates.
         """
         if not isinstance(circuit, Circuit):
@@ -87,3 +87,25 @@ class MeasurementNoiseModel(BaseNoiseModel):
             noisy_circuit.add_gate(gate)
 
         return noisy_circuit
+
+    def apply_to_bitstring(self, bitstring: str) -> str:
+        """
+        Apply readout noise to a single-qubit bitstring.
+
+        Input(s)
+        --------
+        - bitstring : str
+            Single-qubit bitstring, either "0" or "1".
+
+        Output(s)
+        ---------
+        - return_value : str
+            Original or flipped bitstring after applying readout noise.
+        """
+        if bitstring not in {"0", "1"}:
+            raise ValueError("bitstring must be '0' or '1'.")
+
+        if self._rng.random() < self._flip_probability:
+            return "1" if bitstring == "0" else "0"
+
+        return bitstring
