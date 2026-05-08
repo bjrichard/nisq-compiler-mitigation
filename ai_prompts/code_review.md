@@ -332,3 +332,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Circuit Type Comparison Review Prompt
+
+Review this deterministic versus superposition mitigation comparison experiment for correctness and clarity.
+
+Specifically evaluate:
+- whether the measurement-only and superposition cases are separated cleanly
+- whether the error metric is meaningful for both cases
+- whether statevector sampling is used appropriately for the superposition circuit
+- whether this comparison is useful for the final project narrative
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
