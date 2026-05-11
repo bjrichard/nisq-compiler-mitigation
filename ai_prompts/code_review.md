@@ -349,3 +349,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Circuit Comparison Results Workflow Review Prompt
+
+Review this CSV results workflow for deterministic and superposition circuit experiments.
+
+Specifically evaluate:
+- whether experiment results are organized clearly
+- whether the CSV structure is appropriate for later plotting
+- whether result persistence is handled cleanly
+- whether this workflow supports future benchmarking extensions
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
