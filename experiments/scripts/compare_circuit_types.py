@@ -16,6 +16,8 @@ from qc_compiler.mitigation import (
 )
 from qc_compiler.noise import MeasurementNoiseModel
 
+from experiments.config import DEFAULT_CONFIG
+
 
 def absolute_error_p0(
     observed_probs: dict[str, float],
@@ -130,8 +132,8 @@ def main() -> None:
     - return_value : None
         Prints noisy and mitigated error for two circuit types.
     """
-    flip_probability = 0.2
-    shots = 5000
+    flip_probability = DEFAULT_CONFIG.flip_probability
+    shots = DEFAULT_CONFIG.shots
 
     measurement = run_measurement_only_case(flip_probability, shots)
     superposition = run_superposition_case(flip_probability, shots)
