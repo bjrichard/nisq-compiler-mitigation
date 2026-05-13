@@ -383,3 +383,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Experiment Configuration Review Prompt
+
+Review this centralized experiment configuration module for clarity and extensibility.
+
+Specifically evaluate:
+- whether configuration responsibilities are separated cleanly from experiment logic
+- whether the dataclass design is appropriate
+- whether immutable configuration is a good choice here
+- whether this structure will scale to larger experiment workflows
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
