@@ -1,3 +1,7 @@
+from dataclasses import FrozenInstanceError
+
+import pytest
+
 from experiments.config import (
     DEFAULT_CONFIG,
     ExperimentConfig,
@@ -25,8 +29,5 @@ def test_experiment_config_is_frozen() -> None:
         seed=1,
     )
 
-    try:
+    with pytest.raises(FrozenInstanceError):
         config.shots = 2000
-        assert False
-    except Exception:
-        pass
