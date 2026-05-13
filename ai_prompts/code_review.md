@@ -366,3 +366,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Circuit Comparison Visualization Review Prompt
+
+Review this deterministic versus superposition visualization workflow for clarity and usefulness.
+
+Specifically evaluate:
+- whether the plotted comparison is easy to interpret
+- whether the four plotted curves are appropriately labeled
+- whether the figure communicates mitigation behavior clearly
+- whether this visualization would work in a technical report
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
