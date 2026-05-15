@@ -417,3 +417,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Result Path Utilities Review Prompt
+
+Review this shared result path utility module for clarity, portability, and maintainability.
+
+Specifically evaluate:
+- whether project-root detection is robust
+- whether centralizing result paths improves experiment scripts
+- whether the path constants are named clearly
+- whether this approach will scale as more experiment outputs are added
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
