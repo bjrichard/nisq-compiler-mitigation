@@ -3,6 +3,8 @@ from __future__ import annotations
 import csv
 from pathlib import Path
 
+from experiments.paths import NOISE_SWEEP_RESULTS_PATH
+
 from experiments.config import (
     DEFAULT_CONFIG,
     NOISE_SWEEP_LEVELS,
@@ -17,16 +19,6 @@ from qc_compiler.mitigation import (
     mitigate_single_qubit_counts,
 )
 from qc_compiler.noise import MeasurementNoiseModel
-
-
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-
-RESULTS_PATH = (
-    PROJECT_ROOT
-    / "experiments"
-    / "results"
-    / "noise_sweep_results.csv"
-)
 
 
 def run_experiment(
@@ -226,7 +218,7 @@ def main() -> None:
             f"{mitigated_error:16.4f}"
         )
 
-    save_results(results, RESULTS_PATH)
+    save_results(results, NOISE_SWEEP_RESULTS_PATH)
 
 
 if __name__ == "__main__":
