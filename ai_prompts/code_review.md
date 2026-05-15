@@ -400,3 +400,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Noise Sweep Config Refactor Review Prompt
+
+Review this noise sweep refactor for clarity, reproducibility, and maintainability.
+
+Specifically evaluate:
+- whether shared configuration is used appropriately
+- whether duplicated parameters were reduced cleanly
+- whether experiment defaults remain easy to understand
+- whether this design will scale to larger experiment workflows
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
