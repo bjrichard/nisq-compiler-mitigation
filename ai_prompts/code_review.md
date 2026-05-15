@@ -451,3 +451,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Experiment Validation Cleanup Review Prompt
+
+Review this validation cleanup refactor for clarity and maintainability.
+
+Specifically evaluate:
+- whether validation responsibilities are separated appropriately
+- whether the helper function is scoped correctly
+- whether this cleanup improves consistency without overengineering
+- whether the naming and error handling are clear
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
