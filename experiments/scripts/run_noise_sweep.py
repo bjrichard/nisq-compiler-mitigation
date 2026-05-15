@@ -13,6 +13,8 @@ from experiments.scripts.run_readout_mitigation_demo import (
     normalize_counts,
     sample_noisy_counts,
 )
+from experiments.validation import validate_positive_int
+
 from qc_compiler.mitigation import (
     confusion_matrix_from_model,
     mitigate_single_qubit_counts,
@@ -49,11 +51,7 @@ def run_experiment(
             "flip_probability must be a number between 0 and 1."
         )
 
-    if not isinstance(shots, int):
-        raise TypeError("shots must be an integer.")
-
-    if shots <= 0:
-        raise ValueError("shots must be greater than 0.")
+    validate_positive_int(shots, "shots")
 
     ideal_probs = {"0": 1.0, "1": 0.0}
 
@@ -112,11 +110,7 @@ def average_experiment(
     - return_value : tuple[float, float]
         Pair containing average noisy error and average mitigated error.
     """
-    if not isinstance(repeats, int):
-        raise TypeError("repeats must be an integer.")
-
-    if repeats <= 0:
-        raise ValueError("repeats must be greater than 0.")
+    validate_positive_int(repeats, "repeats")
 
     noisy_errors: list[float] = []
     mitigated_errors: list[float] = []
