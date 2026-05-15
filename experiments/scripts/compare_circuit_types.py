@@ -9,6 +9,8 @@ from experiments.scripts.run_statevector_readout_mitigation_demo import (
     build_single_qubit_superposition_circuit,
     sample_noisy_statevector_counts,
 )
+from experiments.summary import format_error_table
+
 from qc_compiler.execution import sample_counts, sample_statevector_counts
 from qc_compiler.mitigation import (
     confusion_matrix_from_model,
@@ -138,17 +140,21 @@ def main() -> None:
     measurement = run_measurement_only_case(flip_probability, shots)
     superposition = run_superposition_case(flip_probability, shots)
 
-    print("Circuit Type      | Noisy Error | Mitigated Error")
-    print("--------------------------------------------------")
     print(
-        f"Measurement-only  | "
-        f"{measurement['noisy_error']:11.4f} | "
-        f"{measurement['mitigated_error']:16.4f}"
-    )
-    print(
-        f"Superposition     | "
-        f"{superposition['noisy_error']:11.4f} | "
-        f"{superposition['mitigated_error']:16.4f}"
+        format_error_table(
+            [
+                (
+                    "Measurement-only",
+                    measurement["noisy_error"],
+                    measurement["mitigated_error"],
+                ),
+                (
+                    "Superposition",
+                    superposition["noisy_error"],
+                    superposition["mitigated_error"],
+                ),
+            ]
+        )
     )
 
 
