@@ -434,3 +434,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Result Summary Helper Review Prompt
+
+Review this experiment result summary helper for clarity, usefulness, and maintainability.
+
+Specifically evaluate:
+- whether formatting logic is separated cleanly from experiment logic
+- whether the helper is reusable across experiment scripts
+- whether validation is appropriate
+- whether the output format is readable for terminal summaries
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
