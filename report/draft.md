@@ -1,16 +1,18 @@
-# How compilation, readout noise, and mitigation affect small quantum circuits
+# How compilation structure, readout noise, and measurement error mitigation jointly affect observable outcome distributions in small quantum circuits
 
 ## Abstract
 
-This technical note studies how simple readout noise affects observable output distributions in small quantum circuits, and how confusion-matrix-based measurement error mitigation can partially recover ideal behavior. The project implements a minimal Python pipeline for circuit representation, sampling, readout noise modeling, mitigation, experiment execution, and visualization.
+This technical note studies how readout noise affects observable output distributions in small quantum circuits, and how confusion-matrix-based measurement error mitigation can partially recover ideal behavior. The project implements a minimal Python pipeline for circuit representation, compilation passes, statevector simulation, readout noise modeling, mitigation, experiment execution, and visualization.
 
 ## 1. Motivation
 
-Near-term quantum devices are noisy. Even when a circuit is conceptually simple, measurement errors can distort observed outcome distributions. For candidates entering the quantum computing industry, understanding this pipeline is important because practical quantum software often sits between ideal circuit descriptions and noisy hardware behavior.
+Near-term quantum devices are noisy. Even when a circuit is conceptually simple, measurement errors can distort observed outcome distributions. Understanding this pipeline is important because practical quantum software sits between ideal circuit descriptions and noisy hardware behavior.
 
 This project asks:
 
-> How do quantum compilation choices, readout noise, and measurement error mitigation affect observable outcome distributions in small quantum circuits?
+> How do compilation structure, readout noise, and measurement error mitigation jointly affect observable outcome distributions in small quantum circuits?
+
+The project emphasizes transparent implementations and reproducible experimentation rather than performance or feature completeness.
 
 ## 2. Project scope
 
@@ -18,7 +20,8 @@ This project intentionally uses a minimal implementation rather than a full quan
 
 Current scope:
 - single-qubit and simple circuit abstractions
-- basic compiler-pass infrastructure
+- compiler-pass infrastructure
+- simple circuit rewriting passes
 - measurement readout noise
 - single-qubit statevector simulation
 - confusion-matrix-based readout mitigation
@@ -29,29 +32,68 @@ Out of scope for the current version:
 - full multi-qubit statevector simulation
 - hardware-calibrated noise models
 - gate-level physical noise
+- production-scale transpilation systems
 - comparison against production SDK implementations
 
 ## 3. Methodology
 
 ### 3.1 Circuit representation
 
-Placeholder: describe `Qubit`, `Gate`, and `Circuit`.
+The project represents circuits using three core abstractions: `Qubit`, `Gate`, and `Circuit`. A `Qubit` identifies a logical qubit by index. A `Gate` stores the operation name, target qubits, and optional parameters. A `Circuit` stores an ordered sequence of gates.
+
+This design intentionally keeps the intermediate representation minimal. The goal is not to reproduce a full quantum software development kit, but to build a transparent circuit representation that can support compilation passes, simulation, noise modeling, and mitigation experiments.
 
 ### 3.2 Compilation framework
 
-Placeholder: describe `CompilerPass`, `BaseCompilerPass`, and `PassManager`.
+Compilation behavior is organized around a pass-based architecture. A compiler pass implements a common interface and transforms one circuit into another. The `PassManager` runs passes sequentially, allowing circuit transformations to be composed into a pipeline.
 
-### 3.3 Readout noise model
+The current implementation includes a simple optimization pass that cancels adjacent self-inverse gates. This provides a minimal example of a compiler transformation and establishes the structure needed for later compilation-focused experiments.
 
-Placeholder: describe measurement bit-flip noise.
+### 3.3 Execution and statevector simulation
 
-### 3.4 Statevector simulation
+The project includes two execution paths.
 
-Placeholder: describe single-qubit statevector simulator supporting `X`, `Z`, and `H`.
+The first path samples measurement outcomes directly from circuits containing measurement-related operations. This path is useful for testing readout behavior and preserving a workflow that can later extend to multi-qubit circuits.
+
+The second path uses a minimal single-qubit statevector simulator. The simulator starts in the state |0⟩ and supports the gates `X`, `Z`, and `H`. Measurement outcomes are sampled from the resulting state probabilities. This makes it possible to study probabilistic quantum behavior, such as the distribution produced by applying `H` before measurement.
+
+### 3.4 Readout noise model
+
+Readout noise is modeled as a classical bit-flip process. For a single measured bit, the noise model flips the observed outcome with probability `p` and preserves it with probability `1 - p`.
+
+The corresponding confusion matrix is:
+
+    [[1 - p, p],
+     [p, 1 - p]]
+
+Each row represents the true bit value, and each column represents the observed bit value. This model is intentionally simple, but it captures the core behavior needed to study measurement error mitigation.
 
 ### 3.5 Measurement error mitigation
 
-Placeholder: describe confusion matrix construction, inversion, and corrected probabilities.
+Measurement error mitigation is implemented by inverting the single-qubit confusion matrix and applying it to the observed probability vector.
+
+If the observed distribution is:
+
+    p_observed = [P_observed(0), P_observed(1)]
+
+and the confusion matrix is `M`, the mitigated estimate is computed as:
+
+    p_mitigated = M^{-1} p_observed
+
+This approach can reduce readout bias when the noise level is moderate. However, as the flip probability approaches `0.5`, the confusion matrix becomes singular or nearly singular, making the inversion unstable. This limitation is important for interpreting the results.
+
+### 3.6 Experiment workflow
+
+Experiments follow a common workflow:
+
+    build circuit → sample ideal outcomes → apply readout noise → mitigate counts → save results → plot results
+
+Configuration values such as shot count, noise levels, and random seeds are centralized in `experiments/config.py`. Output paths are centralized in `experiments/paths.py`. This keeps experiment scripts more reproducible and easier to maintain.
+
+Current experiments include:
+- a noise sweep comparing noisy and mitigated error
+- a deterministic versus superposition circuit comparison
+- visualizations saved as project artifacts
 
 ## 4. Experiments
 
