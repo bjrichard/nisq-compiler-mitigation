@@ -1,8 +1,10 @@
 # QC Transition Plan — Week 07
-**File:** `week_07.md`  
-**Theme:** Technical report structure and project narrative
+**File:** `week_07.md`
+**Theme:** Technical reporting and compilation-focused experiments
 
-This week shifts from building code to turning the project into a clear technical artifact. The goal is to explain the project question, architecture, methodology, results, limitations, and next steps in a way that is understandable to a hiring manager or technical reviewer.
+This week shifts from infrastructure building toward technical communication, experiment interpretation, and re-alignment with the original project question.
+
+The goal is not only to document the current system, but also to reconnect experiments more directly to compilation and circuit-transformation behavior.
 
 ---
 
@@ -11,7 +13,7 @@ This week shifts from building code to turning the project into a clear technica
 ### 1. Concepts to Learn
 - Technical report structure
 - Scientific narrative
-- Separating motivation, method, results, and limitations
+- Separating motivation, methodology, results, and limitations
 
 ### 2. Concrete Coding/Writing Task
 **Exercise name:** `technical_report_skeleton`
@@ -36,8 +38,9 @@ Review this technical report skeleton for clarity, completeness, and alignment w
 
 ### 1. Concepts to Learn
 - Explaining circuit representation
-- Explaining readout noise
-- Explaining mitigation by confusion-matrix inversion
+- Explaining statevector simulation
+- Explaining readout noise and mitigation
+- Explaining experiment architecture
 
 ### 2. Concrete Coding/Writing Task
 **Exercise name:** `methodology_section`
@@ -58,7 +61,36 @@ Review this methodology section for technical clarity and accuracy.
 
 ---
 
-## Day 3 — Results Narrative
+## Day 3 — Compilation-Focused Experiment
+
+### 1. Concepts to Learn
+- Circuit transformation effects
+- Semantic preservation
+- Compilation-oriented benchmarking
+
+### 2. Concrete Coding/Writing Task
+**Exercise name:** `compilation_comparison_experiment`
+
+Create an experiment comparing transformed versus untransformed circuits under noise and mitigation.
+
+### 3. Exact GitHub Deliverable
+- New experiment script
+- Associated tests
+- Generated CSV results
+- Optional visualization
+
+**Commit message**  
+feat(experiments): add compilation comparison experiment
+
+### 4. Exact AI Prompt(s) to Run After Work
+Review this compilation-focused experiment for relevance to the project question.
+
+### 5. Optional Stretch Goal
+- Compare multiple transformation strategies.
+
+---
+
+## Day 4 — Results Narrative
 
 ### 1. Concepts to Learn
 - Describing quantitative results
@@ -71,6 +103,7 @@ Review this methodology section for technical clarity and accuracy.
 Write the first results section using:
 - noise sweep results
 - circuit comparison results
+- compilation-focused experiment results
 - generated figures
 
 ### 3. Exact GitHub Deliverable
@@ -87,59 +120,30 @@ Review this results narrative for clarity, evidence, and appropriate interpretat
 
 ---
 
-## Day 4 — Limitations and Future Work
+## Day 5 — Limitations, Future Work, and README Integration
 
 ### 1. Concepts to Learn
 - Honest technical limitation writing
-- Scope control
-- Research roadmap framing
+- Project positioning
+- Repository usability
 
 ### 2. Concrete Coding/Writing Task
-**Exercise name:** `limitations_future_work`
+**Exercise name:** `project_positioning_cleanup`
 
-Write limitations and future work sections.
+Write limitations and future work sections and update the README to point to experiments, figures, and report sections.
 
 ### 3. Exact GitHub Deliverable
 - Updated `report/draft.md`
-
-**Commit message**  
-docs(report): add limitations and future work
-
-### 4. Exact AI Prompt(s) to Run After Work
-Review this limitations section for honesty, specificity, and technical maturity.
-
-### 5. Optional Stretch Goal
-- Add a short paragraph connecting limitations to next experiments.
-
----
-
-## Day 5 — README Integration
-
-### 1. Concepts to Learn
-- Portfolio presentation
-- Project navigation
-- External-reader usability
-
-### 2. Concrete Coding/Writing Task
-**Exercise name:** `readme_report_integration`
-
-Update the project README to point to:
-- report draft
-- experiment scripts
-- result files
-- generated figures
-
-### 3. Exact GitHub Deliverable
 - Updated `README.md`
 
 **Commit message**  
-docs(readme): add report and experiment navigation
+docs(project): add limitations and improve repository navigation
 
 ### 4. Exact AI Prompt(s) to Run After Work
-Review the README for hiring-manager readability and project clarity.
+Review the report and README for technical clarity and hiring-manager readability.
 
 ### 5. Optional Stretch Goal
-- Add a short “responsible AI usage” note.
+- Add a short responsible-AI usage section to the README.
 
 ---
 
@@ -148,6 +152,7 @@ Review the README for hiring-manager readability and project clarity.
 By the end of Week 7, the repository must contain:
 - an initial technical report draft
 - methodology description
+- compilation-focused experiments
 - results narrative
 - limitations and future work
 - README links to experiments and outputs
@@ -156,4 +161,4 @@ By the end of Week 7, the repository must contain:
 
 ## Next Step
 
-Week 8 will focus on polishing the technical report, improving figures, and preparing the repository as a portfolio artifact.
+Week 8 will focus on refining figures, improving quantitative analysis, and polishing the repository into a portfolio-quality technical artifact.
