@@ -468,3 +468,20 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Technical Report Skeleton Review Prompt
+
+Review this technical report skeleton for clarity, completeness, and alignment with the project goals.
+
+Specifically evaluate:
+- whether the report structure is logical
+- whether the motivation is clear
+- whether the methodology and experiment sections are appropriately separated
+- whether the placeholders identify the right material to fill in next
+
+Suggest one improvement.
+
+Do not rewrite the report.
+Provide critique only.
