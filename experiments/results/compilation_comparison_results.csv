@@ -1,0 +1,3 @@
+circuit_type,gate_count,ideal_p0,noisy_error,mitigated_error
+Unoptimized,4,0.4974,0.0112,0.0204
+Optimized,2,0.4974,0.0112,0.0204
