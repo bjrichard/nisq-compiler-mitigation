@@ -5,9 +5,16 @@
 
 ## Single Project Question
 
-**How do quantum compilation choices interact with measurement error mitigation to affect observable outcome distributions in small, NISQ-era quantum circuits?**
+**How do compilation structure, readout noise, and measurement error mitigation jointly affect observable outcome distributions in small quantum circuits?**
 
-This project builds a minimal, transparent quantum compilation and error-mitigation pipeline in Python to study how different circuit representations, transpilation strategies, and measurement error mitigation techniques jointly influence experimental results under realistic noise.
+This project builds a minimal, transparent quantum experimentation pipeline in Python to study how circuit structure, simple compiler transformations, state preparation, readout noise, and measurement error mitigation influence experimental results under realistic noise.
+
+The project emphasizes:
+- clean software engineering
+- reproducible experimentation
+- transparent implementations
+- incremental architecture growth
+- responsible AI-assisted development
 
 ---
 
@@ -17,21 +24,29 @@ By the end of the plan, the project will include:
 
 - A modular Python codebase implementing:
   - a minimal circuit intermediate representation (IR)
-  - simple compilation / transpilation passes
-  - noise and measurement error models
+  - compiler-pass abstractions
+  - simple transpilation / rewriting passes
+  - measurement noise models
   - measurement error mitigation routines
-- A reproducible experimental pipeline comparing:
-  - multiple compilation strategies
-  - mitigated vs. unmitigated measurement outcomes
-- A written technical report (Markdown or LaTeX) with:
-  - problem motivation
+  - lightweight single-qubit statevector simulation
+- A reproducible experimental pipeline supporting:
+  - deterministic and probabilistic circuits
+  - noisy versus ideal execution paths
+  - mitigated versus unmitigated comparisons
+  - CSV-based experiment persistence
+  - experiment visualization
+- A written technical report containing:
+  - project motivation
   - methodology
-  - quantitative results (plots, tables)
-  - discussion and limitations
+  - quantitative results
+  - limitations
+  - future work
 - A professional GitHub repository demonstrating:
-  - clean software engineering practices
-  - disciplined AI-assisted development
-  - incremental daily progress
+  - strong Python and OOP fundamentals
+  - modular architecture
+  - testing discipline
+  - reproducibility practices
+  - disciplined AI-assisted engineering workflow
 
 ---
 
@@ -69,10 +84,11 @@ By the end of the plan, the project will include:
 **Theme:** Simple compiler transformations
 
 **Deliverables:**
-- One or more compilation passes (e.g., gate rewriting, reordering)
-- Pass manager or pipeline abstraction
-- Comparison of pre- and post-compilation circuit structure
+- Compiler-pass abstraction
+- Pass manager / pipeline abstraction
+- Basic circuit rewriting and transformation passes
 - Tests validating semantic preservation
+- Comparison of pre- and post-transformation circuit structure
 
 ---
 
@@ -82,76 +98,77 @@ By the end of the plan, the project will include:
 
 **Deliverables:**
 - Measurement noise model (confusion matrix–based)
-- Optional simple gate noise model
 - Simulation of noisy measurement outcomes
-- Clear separation between ideal and noisy execution paths
+- Separation between ideal and noisy execution paths
+- Noise sweep experiments
+- CSV result generation
+- Basic visualization pipeline
 
 ---
 
-## Week 5 — Measurement Error Mitigation
+## Week 5 — Measurement Error Mitigation & Statevector Simulation
 
-**Theme:** Mitigation algorithms and numerical stability
+**Theme:** Mitigation algorithms and probabilistic quantum behavior
 
 **Deliverables:**
 - Measurement error mitigation routines
-- Probability-space vs. count-space handling
+- Probability-space and count-space workflows
+- Single-qubit statevector simulator
+- Support for `X`, `Z`, `H`, and `MEASURE`
+- Deterministic versus superposition circuit experiments
+- Circuit comparison visualization
 - Tests for mitigation correctness and edge cases
 - Documentation discussing assumptions and limitations
 
 ---
 
-## Week 6 — End-to-End Pipeline Integration
+## Week 6 — Pipeline Integration & Architecture Cleanup
 
-**Theme:** System integration and architecture cleanup
+**Theme:** System integration and maintainability
 
 **Deliverables:**
-- End-to-end pipeline:
-  circuit → compile → noise → mitigate → results
-- Refactored codebase with clean module boundaries
+- End-to-end experimental workflow:
+  circuit → simulate → noise → mitigate → results
+- Centralized experiment configuration
+- Shared experiment path utilities
+- Shared experiment summary helpers
+- Shared validation utilities
+- Refactored codebase with cleaner module boundaries
+- Consistent experiment workflows and formatting
 - CI passing for formatting, linting, and tests
-- Architecture overview documentation
 
 ---
 
-## Week 7 — Benchmark Circuits & Experiments
+## Week 7 — Technical Report Foundations & Compilation-Focused Experiments
 
-**Theme:** Experimental design
+**Theme:** Technical communication and experiment alignment
 
 **Deliverables:**
-- Small benchmark circuits (e.g., toy VQE-style circuits)
-- Parameterized experiment scripts
-- Data collection and storage format
-- Reproducible experiment configuration
+- Initial technical report draft
+- Methodology and architecture sections
+- Results narrative for current experiments
+- Compilation-focused benchmark experiments
+- Comparison between transformed and untransformed circuits
+- Integration of figures and experimental outputs into report structure
 
 ---
 
-## Week 8 — Quantitative Analysis & Visualization
+## Week 8 — Quantitative Analysis & Report Refinement
 
-**Theme:** Results and interpretation
+**Theme:** Results interpretation and professional presentation
 
 **Deliverables:**
-- Metrics comparing compilation strategies
-- Plots showing mitigated vs. unmitigated outcomes
+- Metrics comparing experimental configurations
+- Improved plots and figure formatting
 - Analysis scripts with documented assumptions
-- Initial figures for the technical report
+- Integrated report figures and captions
+- Expanded limitations and future-work discussion
 
 ---
 
-## Week 9 — Technical Report Drafting
+## Week 9 — Repository Polish & Portfolio Positioning
 
-**Theme:** Writing and communication
-
-**Deliverables:**
-- Full draft of technical report (Markdown or LaTeX)
-- Clear explanation of methodology and results
-- Figures integrated into the report
-- Internal consistency checks between code and text
-
----
-
-## Week 10 — Refinement, Polish, and Signaling
-
-**Theme:** Professional polish and external readability
+**Theme:** Professional presentation and external readability
 
 **Deliverables:**
 - Final refactors and cleanup
@@ -159,16 +176,20 @@ By the end of the plan, the project will include:
 - Final README with:
   - setup instructions
   - project narrative
+  - experiment walkthrough
   - AI usage explanation
-- Optional submission-ready version of the report (preprint / workshop style)
+- Interview-ready repository structure
+- Optional public-facing project summary or blog draft
 
 ---
 
 ## Optional Extensions (If Time Remains)
 
+- Multi-qubit statevector simulation
 - Additional compilation strategies
-- Sensitivity analysis over noise parameters
-- Comparison with conceptual behavior of existing frameworks (no code copying)
+- Correlated readout noise
+- More sophisticated benchmark circuits
+- Comparison against conceptual behavior of existing frameworks
 - Public-facing blog post summarizing findings
 
 ---
@@ -178,8 +199,8 @@ By the end of the plan, the project will include:
 This project demonstrates:
 - disciplined daily engineering practice
 - strong Python and OOP fundamentals
-- applied understanding of quantum compilation and error mitigation
+- applied understanding of quantum circuits, noise, and mitigation
+- experiment design and reproducibility
+- modular software architecture
 - responsible, transparent use of AI as a development aid
-- ability to take a research question from concept to reproducible result
-
----
+- ability to take a technical question from concept to reproducible result
