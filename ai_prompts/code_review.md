@@ -503,3 +503,21 @@ Suggest one improvement.
 
 Do not rewrite the report.
 Provide critique only.
+
+---
+
+# Compilation Comparison Experiment Review Prompt
+
+Review this compilation-focused experiment for relevance to the project question and overall experiment quality.
+
+Specifically evaluate:
+- whether the experiment meaningfully connects compilation and mitigation
+- whether the optimization pass is demonstrated clearly
+- whether the result structure is understandable
+- whether the experiment workflow is reproducible
+- whether the benchmark is too trivial or appropriately scoped for the current project stage
+
+Suggest one improvement.
+
+Do not rewrite the implementation.
+Provide critique only.
