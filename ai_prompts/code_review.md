@@ -485,3 +485,21 @@ Suggest one improvement.
 
 Do not rewrite the report.
 Provide critique only.
+
+---
+
+# Methodology Section Review Prompt
+
+Review this methodology section for technical clarity, accuracy, and alignment with the implemented codebase.
+
+Specifically evaluate:
+- whether the circuit representation is explained clearly
+- whether the compilation framework is described accurately
+- whether the execution and statevector paths are distinguished cleanly
+- whether the readout noise and mitigation explanation is technically correct
+- whether the experiment workflow is understandable to a technical reviewer
+
+Suggest one improvement.
+
+Do not rewrite the report.
+Provide critique only.
