@@ -574,3 +574,20 @@ Suggest one improvement.
 
 Do not rewrite the report.
 Provide critique only.
+
+---
+
+# Figure Caption and Interpretation Review Prompt
+
+Review these report caption and interpretation updates for clarity, accuracy, and technical tone.
+
+Specifically evaluate:
+- whether figure captions clearly explain the purpose of each visualization
+- whether the interpretation language is appropriately scientific
+- whether conclusions are proportional to the actual experiment scope
+- whether the report avoids overstating the sophistication of the framework
+
+Suggest one improvement.
+
+Do not rewrite the report.
+Provide critique only.
