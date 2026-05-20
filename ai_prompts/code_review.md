@@ -591,3 +591,20 @@ Suggest one improvement.
 
 Do not rewrite the report.
 Provide critique only.
+
+---
+
+# Repository Reproducibility Review Prompt
+
+Review these repository reproducibility and workflow updates for clarity and maintainability.
+
+Specifically evaluate:
+- whether experiment workflows are easy to follow
+- whether reproducibility expectations are clear
+- whether artifact organization is understandable
+- whether the repository now feels easier for external contributors or reviewers to navigate
+
+Suggest one improvement.
+
+Do not rewrite the repository documentation.
+Provide critique only.
