@@ -113,7 +113,61 @@ Figure placeholder:
 
 ## 5. Results
 
-Placeholder: summarize observed noisy error, mitigated error, and limitations at higher noise.
+### 5.1 Noise sweep experiment
+
+The noise sweep experiment evaluated how increasing readout flip probability affected observed measurement error before and after mitigation.
+
+As expected, noisy error increased as the readout flip probability increased. At low noise levels, mitigation substantially reduced the observed error and recovered probabilities close to the ideal distribution.
+
+However, mitigation performance degraded as the flip probability approached `0.5`. This behavior is expected because the confusion matrix becomes nearly singular near this limit, making the inverse correction numerically unstable.
+
+Overall, the experiment demonstrates that simple confusion-matrix-based mitigation can effectively reduce readout bias when noise levels remain moderate.
+
+### 5.2 Deterministic versus superposition circuits
+
+The circuit comparison experiment evaluated two circuit types:
+- a deterministic measurement circuit
+- a superposition circuit created using the `H` gate
+
+The deterministic circuit ideally produces a single measurement outcome with probability near `1.0`, while the superposition circuit ideally produces approximately equal probabilities for `0` and `1`.
+
+The results showed that mitigation improved both circuit types, but the superposition experiment provided a more informative demonstration of probabilistic quantum behavior. Because the ideal distribution is not concentrated entirely on one bitstring, the superposition circuit better illustrates how readout noise distorts measurement probabilities.
+
+This experiment also demonstrated that the statevector simulation workflow integrates cleanly with the mitigation pipeline.
+
+### 5.3 Compilation comparison experiment
+
+The compilation comparison experiment evaluated an unoptimized circuit containing redundant adjacent inverse gates and compared it against an optimized circuit produced by `CancelAdjacentInversesPass`.
+
+The unoptimized circuit:
+
+    X X H MEASURE
+
+was reduced to:
+
+    H MEASURE
+
+after compilation.
+
+The experiment confirmed that compilation reduced circuit gate count while preserving the ideal output distribution. Under the current readout-only noise model, the noisy and mitigated errors remained similar between the two circuits.
+
+This result is important because it demonstrates a limitation of the current experimental framework. Since the noise model only affects measurement outcomes and does not model gate-level physical noise, reducing circuit depth does not significantly change the observed error.
+
+This naturally motivates future work involving:
+- gate-level noise
+- decoherence models
+- depth-sensitive error accumulation
+- multi-qubit experiments
+
+### 5.4 Overall interpretation
+
+Taken together, the experiments demonstrate that:
+- measurement error mitigation can substantially reduce readout bias
+- statevector simulation provides a useful framework for probabilistic circuit experiments
+- compilation passes can simplify circuit structure while preserving ideal behavior
+- the current framework is strongly sensitive to readout noise but not yet sensitive to circuit depth
+
+These results establish a foundation for future experiments involving more realistic noise and larger circuit systems.
 
 ## 6. Limitations
 
