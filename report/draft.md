@@ -99,17 +99,68 @@ Current experiments include:
 
 ### 4.1 Noise sweep experiment
 
-Placeholder: describe the noise sweep experiment and generated CSV/plot.
+The noise sweep experiment evaluates how increasing readout flip probability affects noisy and mitigated measurement error.
 
-Figure placeholder:
-`experiments/results/noise_sweep_plot.png`
+For each flip probability, the experiment:
+- builds a single-qubit measurement circuit
+- samples noisy readout outcomes
+- applies confusion-matrix-based mitigation
+- computes absolute error in `P(0)`
+- saves results to CSV
+- generates a plot comparing noisy and mitigated error
 
-### 4.2 Circuit comparison experiment
+Result files:
+- `experiments/results/noise_sweep_results.csv`
+- `experiments/results/noise_sweep_plot.png`
 
-Placeholder: describe comparison between measurement-only and superposition circuits.
+Figure:
 
-Figure placeholder:
-`experiments/results/circuit_comparison_plot.png`
+```text
+experiments/results/noise_sweep_plot.png
+```
+
+### 4.2 Deterministic versus superposition circuit comparison
+
+The circuit comparison experiment compares mitigation behavior for:
+- a deterministic measurement-only circuit
+- a probabilistic superposition circuit using `H`
+
+This experiment demonstrates how the mitigation pipeline behaves when the ideal distribution is concentrated on one outcome versus spread across multiple outcomes.
+
+Result files:
+- `experiments/results/circuit_comparison_results.csv`
+- `experiments/results/circuit_comparison_plot.png`
+
+Figure:
+
+```text
+experiments/results/circuit_comparison_plot.png
+```
+
+### 4.3 Compilation comparison experiment
+
+The compilation comparison experiment compares an unoptimized circuit containing redundant adjacent inverse gates with an optimized circuit produced by `CancelAdjacentInversesPass`.
+
+The experiment tests whether compilation changes:
+- gate count
+- ideal output behavior
+- noisy error
+- mitigated error
+
+Result file:
+- `experiments/results/compilation_comparison_results.csv`
+
+The current readout-only noise model means this experiment is expected to show gate-count reduction without a major error difference between optimized and unoptimized circuits.
+
+## 4.4 Figure and result index
+
+| Artifact | Path | Purpose |
+|---|---|---|
+| Noise sweep CSV | `experiments/results/noise_sweep_results.csv` | Stores noisy and mitigated error across readout flip probabilities |
+| Noise sweep plot | `experiments/results/noise_sweep_plot.png` | Visualizes mitigation performance across noise levels |
+| Circuit comparison CSV | `experiments/results/circuit_comparison_results.csv` | Stores deterministic and superposition circuit comparison results |
+| Circuit comparison plot | `experiments/results/circuit_comparison_plot.png` | Visualizes circuit-type comparison |
+| Compilation comparison CSV | `experiments/results/compilation_comparison_results.csv` | Stores optimized versus unoptimized circuit comparison results |
 
 ## 5. Results
 
@@ -171,16 +222,43 @@ These results establish a foundation for future experiments involving more reali
 
 ## 6. Limitations
 
-Placeholder: discuss single-qubit scope, simplified noise model, finite sampling noise, and instability near singular confusion matrices.
+This project intentionally prioritizes transparency and educational value over realism and scale.
+
+The current implementation is limited to:
+- single-qubit statevector simulation
+- a readout-only noise model
+- simple compilation passes
+- small benchmark circuits
+
+The readout noise model captures measurement bit flips but does not model:
+- gate-level physical noise
+- decoherence
+- crosstalk
+- time-dependent error accumulation
+
+As a result, compilation-based circuit simplification does not substantially affect measured error under the current framework. More realistic noise models would likely introduce stronger relationships between circuit depth and observed output fidelity.
+
+The mitigation workflow is also limited to single-qubit confusion-matrix inversion. As noise levels approach a flip probability of `0.5`, the confusion matrix becomes singular or nearly singular, making inversion unstable.
+
+Finally, the project is designed as a minimal research-style experimentation framework rather than a production quantum SDK. Many optimizations, abstractions, and validation layers expected in large-scale systems are intentionally omitted.
 
 ## 7. Future work
 
-Placeholder: describe possible extensions:
+Several extensions would significantly improve the realism and scope of the current framework.
+
+Potential future directions include:
 - multi-qubit statevector simulation
+- gate-level noise modeling
+- depth-sensitive error accumulation
 - correlated readout noise
 - richer benchmark circuits
-- configuration-driven experiment runners
-- comparison with existing SDK behavior
+- additional compilation and optimization passes
+- calibration-based confusion matrix estimation
+- experiment configuration through external YAML or JSON files
+
+The compilation comparison experiment also motivates future studies exploring how optimization affects circuit fidelity under more realistic physical noise models.
+
+Another natural extension would be comparison against conceptual behavior from established quantum software frameworks such as Qiskit or Cirq.
 
 ## 8. Responsible AI usage
 
@@ -188,4 +266,17 @@ This project was developed with AI assistance for planning, code review, debuggi
 
 ## 9. Conclusion
 
-Placeholder: summarize what the project demonstrates technically and professionally.
+This project demonstrates a minimal but coherent quantum experimentation workflow integrating:
+- circuit representation
+- compilation passes
+- statevector simulation
+- readout noise modeling
+- measurement error mitigation
+- experiment execution
+- quantitative analysis
+
+The experiments show that confusion-matrix-based mitigation can substantially reduce readout bias under moderate noise conditions. They also demonstrate that compiler transformations can simplify circuit structure while preserving ideal output behavior.
+
+At the same time, the compilation comparison experiment highlights an important limitation of the current framework: because the implemented noise model is readout-only, circuit simplification does not yet strongly affect observed experimental error.
+
+Overall, the project establishes a strong foundation for future work involving more realistic noise models, larger circuit systems, and deeper studies of the interaction between compilation and mitigation in noisy quantum environments.
