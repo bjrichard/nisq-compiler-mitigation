@@ -625,3 +625,20 @@ Suggest one improvement.
 
 Do not rewrite the report.
 Provide critique only.
+
+---
+
+# Week 8 Checkpoint Review Prompt
+
+Review this Week 8 checkpoint update for clarity, completeness, and portfolio readiness.
+
+Specifically evaluate:
+- whether the checkpoint accurately reflects the project state
+- whether the report now communicates the working experiment loop clearly
+- whether the repository is easier for an external reviewer to evaluate
+- whether the Week 8 outcome naturally sets up Week 9
+
+Suggest one improvement.
+
+Do not rewrite the documentation.
+Provide critique only.
