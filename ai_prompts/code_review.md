@@ -608,3 +608,20 @@ Suggest one improvement.
 
 Do not rewrite the repository documentation.
 Provide critique only.
+
+---
+
+# Experiment Command Index Review Prompt
+
+Review this experiment command index for clarity and reproducibility.
+
+Specifically evaluate:
+- whether each command maps clearly to its generated artifacts
+- whether the table helps an external reviewer reproduce the results
+- whether any experiment entry points are missing
+- whether the note about running commands from the repository root is sufficient
+
+Suggest one improvement.
+
+Do not rewrite the report.
+Provide critique only.
