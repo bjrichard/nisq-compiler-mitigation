@@ -539,3 +539,21 @@ Suggest one improvement.
 
 Do not rewrite the report.
 Provide critique only.
+
+---
+
+# Final Report Positioning Review Prompt
+
+Review these report limitation, future work, and conclusion sections for technical honesty, clarity, and professional positioning.
+
+Specifically evaluate:
+- whether limitations are acknowledged appropriately
+- whether future work follows naturally from the current experiments
+- whether the project scope is communicated honestly
+- whether the conclusion appropriately summarizes the technical contributions
+- whether the report avoids overstating the sophistication of the framework
+
+Suggest one improvement.
+
+Do not rewrite the report.
+Provide critique only.
