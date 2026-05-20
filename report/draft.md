@@ -162,6 +162,16 @@ The current readout-only noise model means this experiment is expected to show g
 | Circuit comparison plot | `experiments/results/circuit_comparison_plot.png` | Visualizes circuit-type comparison |
 | Compilation comparison CSV | `experiments/results/compilation_comparison_results.csv` | Stores optimized versus unoptimized circuit comparison results |
 
+### 4.5 Experiment command index
+
+| Experiment | Command | Primary outputs |
+|---|---|---|
+| Noise sweep | `python -m experiments.scripts.run_noise_sweep` | `noise_sweep_results.csv`, `noise_sweep_plot.png` |
+| Circuit comparison | `python -m experiments.scripts.save_circuit_comparison_results` and `python -m experiments.scripts.plot_circuit_comparison_results` | `circuit_comparison_results.csv`, `circuit_comparison_plot.png` |
+| Compilation comparison | `python -m experiments.scripts.run_compilation_comparison` | `compilation_comparison_results.csv` |
+
+All experiment commands should be run from the repository root. The scripts use shared configuration values and write generated artifacts into `experiments/results/`.
+
 ## 5. Results
 
 ### 5.1 Noise sweep experiment
