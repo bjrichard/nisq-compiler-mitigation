@@ -280,7 +280,22 @@ Another natural extension would be comparison against conceptual behavior from e
 
 This project was developed with AI assistance for planning, code review, debugging, and learning checks. Core implementation decisions and final code review were performed manually. AI-generated suggestions were treated as proposals, not authoritative solutions.
 
-## 9. Conclusion
+## 9 Current project checkpoint
+
+At this stage, the project includes a complete minimal experimentation loop:
+
+1. Build small quantum circuits.
+2. Apply compiler transformations.
+3. Simulate ideal behavior.
+4. Apply readout noise.
+5. Mitigate noisy outcomes.
+6. Save experimental results.
+7. Generate plots.
+8. Interpret results in a technical report.
+
+This checkpoint establishes the project as a working research-style prototype. The current implementation is intentionally limited, but the codebase now supports reproducible experiments, quantitative comparison, and clear technical communication.
+
+## 10. Conclusion
 
 This project demonstrates a minimal but coherent quantum experimentation workflow integrating:
 - circuit representation
