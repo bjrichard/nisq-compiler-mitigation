@@ -286,3 +286,20 @@ The experiments show that confusion-matrix-based mitigation can substantially re
 At the same time, the compilation comparison experiment highlights an important limitation of the current framework: because the implemented noise model is readout-only, circuit simplification does not yet strongly affect observed experimental error.
 
 Overall, the project establishes a strong foundation for future work involving more realistic noise models, larger circuit systems, and deeper studies of the interaction between compilation and mitigation in noisy quantum environments.
+
+## Appendix A. Repository artifacts
+
+Key generated artifacts include:
+
+| Artifact | Description |
+|---|---|
+| `noise_sweep_results.csv` | Noise sweep experiment results |
+| `noise_sweep_plot.png` | Noise sweep visualization |
+| `circuit_comparison_results.csv` | Deterministic versus superposition results |
+| `circuit_comparison_plot.png` | Circuit comparison visualization |
+| `compilation_comparison_results.csv` | Compilation comparison experiment results |
+
+These artifacts are generated directly from experiment scripts located in:
+
+```text
+experiments/scripts/

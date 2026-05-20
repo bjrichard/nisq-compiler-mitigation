@@ -9,6 +9,7 @@ SANDBOX.py
 
 # Python caches
 __pycache__/
+.pytest_cache/
 *.pyc
 
 # Packaging artifacts
