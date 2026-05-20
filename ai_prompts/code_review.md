@@ -557,3 +557,20 @@ Suggest one improvement.
 
 Do not rewrite the report.
 Provide critique only.
+
+---
+
+# Report Figure Integration Review Prompt
+
+Review this report update for clarity and usefulness of experiment and figure references.
+
+Specifically evaluate:
+- whether each experiment is described clearly
+- whether result files and figure paths are easy to find
+- whether the artifact index improves report navigation
+- whether the report now connects experiments to outputs more effectively
+
+Suggest one improvement.
+
+Do not rewrite the report.
+Provide critique only.
