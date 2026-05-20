@@ -521,3 +521,21 @@ Suggest one improvement.
 
 Do not rewrite the implementation.
 Provide critique only.
+
+---
+
+# Results Narrative Review Prompt
+
+Review this technical report results section for clarity, accuracy, and scientific interpretation.
+
+Specifically evaluate:
+- whether the experimental outcomes are described accurately
+- whether the mitigation behavior is interpreted correctly
+- whether the compilation comparison conclusions are reasonable given the readout-only noise model
+- whether limitations and future-work implications are explained clearly
+- whether the narrative appropriately distinguishes observation from interpretation
+
+Suggest one improvement.
+
+Do not rewrite the report.
+Provide critique only.
