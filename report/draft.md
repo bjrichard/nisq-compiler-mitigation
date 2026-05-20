@@ -63,8 +63,10 @@ Readout noise is modeled as a classical bit-flip process. For a single measured 
 
 The corresponding confusion matrix is:
 
-    [[1 - p, p],
-     [p, 1 - p]]
+```text
+[[1 - p, p],
+ [p, 1 - p]]
+```
 
 Each row represents the true bit value, and each column represents the observed bit value. This model is intentionally simple, but it captures the core behavior needed to study measurement error mitigation.
 
@@ -74,11 +76,15 @@ Measurement error mitigation is implemented by inverting the single-qubit confus
 
 If the observed distribution is:
 
-    p_observed = [P_observed(0), P_observed(1)]
+```text
+p_observed = [P_observed(0), P_observed(1)]
+```
 
 and the confusion matrix is `M`, the mitigated estimate is computed as:
 
-    p_mitigated = M^{-1} p_observed
+```text
+p_mitigated = M^{-1} p_observed
+```
 
 This approach can reduce readout bias when the noise level is moderate. However, as the flip probability approaches `0.5`, the confusion matrix becomes singular or nearly singular, making the inversion unstable. This limitation is important for interpreting the results.
 
@@ -86,7 +92,9 @@ This approach can reduce readout bias when the noise level is moderate. However,
 
 Experiments follow a common workflow:
 
-    build circuit → sample ideal outcomes → apply readout noise → mitigate counts → save results → plot results
+```text
+build circuit → sample ideal outcomes → apply readout noise → mitigate counts → save results → plot results
+```
 
 Configuration values such as shot count, noise levels, and random seeds are centralized in `experiments/config.py`. Output paths are centralized in `experiments/paths.py`. This keeps experiment scripts more reproducible and easier to maintain.
 
@@ -113,11 +121,7 @@ Result files:
 - `experiments/results/noise_sweep_results.csv`
 - `experiments/results/noise_sweep_plot.png`
 
-Figure:
-
-```text
-experiments/results/noise_sweep_plot.png
-```
+![Figure 1. Noise sweep comparison showing noisy versus mitigated measurement error as readout flip probability increases. Mitigation substantially reduces error at low and moderate noise levels, but performance degrades as the confusion matrix approaches singularity near a flip probability of 0.5.](../experiments/results/noise_sweep_plot.png)
 
 ### 4.2 Deterministic versus superposition circuit comparison
 
@@ -131,11 +135,7 @@ Result files:
 - `experiments/results/circuit_comparison_results.csv`
 - `experiments/results/circuit_comparison_plot.png`
 
-Figure:
-
-```text
-experiments/results/circuit_comparison_plot.png
-```
+![Figure 2. Comparison of mitigation behavior for deterministic and superposition circuits. The superposition circuit demonstrates probabilistic quantum behavior and shows how readout noise distorts distributed measurement probabilities.](../experiments/results/circuit_comparison_plot.png)
 
 ### 4.3 Compilation comparison experiment
 
@@ -152,7 +152,7 @@ Result file:
 
 The current readout-only noise model means this experiment is expected to show gate-count reduction without a major error difference between optimized and unoptimized circuits.
 
-## 4.4 Figure and result index
+### 4.4 Figure and result index
 
 | Artifact | Path | Purpose |
 |---|---|---|
@@ -172,7 +172,7 @@ As expected, noisy error increased as the readout flip probability increased. At
 
 However, mitigation performance degraded as the flip probability approached `0.5`. This behavior is expected because the confusion matrix becomes nearly singular near this limit, making the inverse correction numerically unstable.
 
-Overall, the experiment demonstrates that simple confusion-matrix-based mitigation can effectively reduce readout bias when noise levels remain moderate.
+Overall, the experiment demonstrates that confusion-matrix-based mitigation can substantially reduce readout bias when measurement noise remains within a numerically stable regime.
 
 ### 5.2 Deterministic versus superposition circuits
 
@@ -192,19 +192,23 @@ The compilation comparison experiment evaluated an unoptimized circuit containin
 
 The unoptimized circuit:
 
-    X X H MEASURE
+```text
+X X H MEASURE
+```
 
 was reduced to:
 
-    H MEASURE
+```text
+H MEASURE
+```
 
 after compilation.
 
 The experiment confirmed that compilation reduced circuit gate count while preserving the ideal output distribution. Under the current readout-only noise model, the noisy and mitigated errors remained similar between the two circuits.
 
-This result is important because it demonstrates a limitation of the current experimental framework. Since the noise model only affects measurement outcomes and does not model gate-level physical noise, reducing circuit depth does not significantly change the observed error.
+This result highlights an important limitation of the current experimental framework. Since the noise model only affects measurement outcomes and does not model gate-level physical noise, reducing circuit depth does not significantly change the observed error.
 
-This naturally motivates future work involving:
+The experiment therefore motivates future work involving:
 - gate-level noise
 - decoherence models
 - depth-sensitive error accumulation
@@ -219,6 +223,8 @@ Taken together, the experiments demonstrate that:
 - the current framework is strongly sensitive to readout noise but not yet sensitive to circuit depth
 
 These results establish a foundation for future experiments involving more realistic noise and larger circuit systems.
+
+The project therefore succeeds as a transparent experimental framework for studying how compilation structure, probabilistic execution, and readout mitigation interact in simplified noisy quantum systems.
 
 ## 6. Limitations
 
