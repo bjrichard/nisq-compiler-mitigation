@@ -745,3 +745,21 @@ Suggest one improvement.
 
 Do not rewrite the README.
 Provide critique only.
+
+---
+
+# Final Technical Writing Review Prompt
+
+Review this final technical report draft for consistency, clarity, and professional tone.
+
+Specifically evaluate:
+- whether terminology is consistent
+- whether the report flows naturally between sections
+- whether any wording feels repetitive or awkward
+- whether the tone matches a small research-style technical report
+- whether the report appropriately balances explanation and conciseness
+
+Suggest one improvement.
+
+Do not rewrite the report.
+Provide critique only.
