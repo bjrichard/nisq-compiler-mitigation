@@ -676,3 +676,20 @@ Suggest one improvement.
 
 Do not rewrite the README.
 Provide critique only.
+
+---
+
+# Final Limitations and Future Work Review Prompt
+
+Review these report revisions for technical honesty, clarity, and research framing.
+
+Specifically evaluate:
+- whether the limitations are communicated clearly
+- whether the future work follows naturally from the implemented experiments
+- whether the report appropriately distinguishes educational scope from production-scale quantum systems
+- whether the conclusion now frames the project more professionally
+
+Suggest one improvement.
+
+Do not rewrite the report.
+Provide critique only.
