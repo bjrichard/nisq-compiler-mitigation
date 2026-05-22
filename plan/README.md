@@ -262,6 +262,20 @@ It is intentionally scoped smaller than a production quantum SDK.
 
 ---
 
+## Current repository state
+
+At the end of Week 9, the repository includes:
+- reusable experiment infrastructure
+- reproducible result generation
+- visualization workflows
+- a structured technical report
+- documented limitations and future work
+- portfolio-oriented project documentation
+
+The remaining work is focused primarily on final polish, presentation quality, and optional future extensions.
+
+---
+
 ## Current limitations
 
 The current framework intentionally prioritizes transparency and educational value over realism and scale.
