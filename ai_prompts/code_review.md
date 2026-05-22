@@ -659,3 +659,20 @@ Suggest one improvement.
 
 Do not rewrite the report.
 Provide critique only.
+
+---
+
+# README Portfolio Presentation Review Prompt
+
+Review this README update for clarity, professionalism, and portfolio presentation quality.
+
+Specifically evaluate:
+- whether the project purpose is easy to understand
+- whether the README communicates technical maturity appropriately
+- whether the repository structure and themes are easy to scan
+- whether the README avoids overselling the sophistication of the framework
+
+Suggest one improvement.
+
+Do not rewrite the README.
+Provide critique only.
