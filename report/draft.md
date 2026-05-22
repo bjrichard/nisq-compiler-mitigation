@@ -299,6 +299,22 @@ At this stage, the project includes a complete minimal experimentation loop:
 
 This checkpoint establishes the project as a working research-style prototype. The current implementation is intentionally limited, but the codebase now supports reproducible experiments, quantitative comparison, and clear technical communication.
 
+### 9.1 Portfolio and research positioning
+
+The repository is intentionally positioned between:
+- a learning project
+- a research-style prototype
+- a software engineering portfolio artifact
+
+The goal of the project is not to provide a production-ready quantum SDK, but to demonstrate:
+- architectural thinking
+- experiment reproducibility
+- quantitative interpretation
+- compiler-oriented abstraction design
+- disciplined technical iteration
+
+The current implementation therefore prioritizes clarity and transparency over algorithmic sophistication or hardware realism.
+
 ## 10. Conclusion
 
 This project demonstrates a minimal but coherent quantum experimentation workflow integrating:

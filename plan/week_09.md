@@ -86,3 +86,32 @@ By the end of Week 9, the project should be readable as a coherent technical por
 - figures
 - report narrative
 - future work
+
+---
+
+## Week 09 Completion Notes
+
+Completed Week 9 focus areas:
+- cleaned up technical report structure
+- improved figure discussion and interpretation
+- polished README portfolio presentation
+- refined limitations and future-work framing
+- improved reproducibility and experiment navigation
+
+Outcome:
+The repository now functions as a coherent research-style portfolio project connecting:
+- compiler abstractions
+- simulation
+- readout noise
+- mitigation
+- experiment workflows
+- technical reporting
+
+The project is now substantially more mature in:
+- documentation quality
+- technical communication
+- architectural consistency
+- experiment reproducibility
+- portfolio presentation
+
+Remaining work is primarily polish rather than major implementation.
