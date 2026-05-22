@@ -1,6 +1,16 @@
 # NISQ Compiler Mitigation
 
-A minimal quantum experimentation framework exploring how compilation structure, readout noise, and measurement error mitigation jointly affect observable outcome distributions in small quantum circuits.
+A minimal research-style quantum experimentation framework exploring how compilation structure, readout noise, and measurement error mitigation jointly affect observable outcome distributions in small quantum circuits.
+
+The project combines:
+- compiler abstractions
+- statevector simulation
+- readout noise modeling
+- measurement error mitigation
+- reproducible experiments
+- technical reporting
+
+The repository was developed as part of a structured transition program focused on quantum computing, software engineering, and research-oriented technical communication.
 
 This project was developed as part of a structured quantum computing and software engineering transition program focused on:
 - clean Python architecture
@@ -8,6 +18,24 @@ This project was developed as part of a structured quantum computing and softwar
 - reproducible experimentation
 - technical reporting
 - disciplined AI-assisted development
+
+---
+
+## Why this project exists
+
+Many quantum computing tutorials focus on isolated concepts or notebook-style demonstrations. This project instead emphasizes:
+- reusable architecture
+- experiment reproducibility
+- transparent implementation
+- technical interpretation
+- disciplined iteration
+
+The goal is not to compete with production quantum SDKs, but to build a minimal framework that clearly demonstrates the interaction between:
+- compilation
+- probabilistic execution
+- readout noise
+- mitigation workflows
+- quantitative experiment analysis
 
 ---
 
@@ -31,7 +59,25 @@ Current experiments include:
 
 ---
 
-## Repository structure
+## Key technical themes
+
+This repository focuses on several core engineering and research themes:
+
+| Theme | Current implementation |
+|---|---|
+| Circuit IR design | `Qubit`, `Gate`, and `Circuit` abstractions |
+| Compilation | Pass manager and optimization passes |
+| Simulation | Single-qubit statevector workflow |
+| Noise modeling | Readout bit-flip noise |
+| Mitigation | Confusion-matrix inversion |
+| Experimentation | CSV generation and reproducible scripts |
+| Reporting | Technical report and figure interpretation |
+
+---
+
+## Repository structure overview
+
+The repository is organized to separate reusable source code, experiment workflows, generated artifacts, tests, and technical reporting.
 
 ```text
 src/qc_compiler/
@@ -201,6 +247,18 @@ AI tools were used for:
 - architecture discussion
 
 Final implementation decisions and validation were performed manually.
+
+---
+
+## Current project maturity
+
+The current repository should be viewed as:
+- a research-style prototype
+- a software engineering learning project
+- a reproducible experimentation framework
+- a portfolio demonstration of architecture and technical communication skills
+
+It is intentionally scoped smaller than a production quantum SDK.
 
 ---
 
