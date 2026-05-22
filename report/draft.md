@@ -123,6 +123,8 @@ Result files:
 
 ![Figure 1. Noise sweep comparison showing noisy versus mitigated measurement error as readout flip probability increases. Mitigation substantially reduces error at low and moderate noise levels, but performance degrades as the confusion matrix approaches singularity near a flip probability of 0.5.](../experiments/results/noise_sweep_plot.png)
 
+The figure shows that noisy measurement error increases approximately monotonically with readout flip probability. Mitigation substantially suppresses error at low and moderate noise levels, but becomes less effective as the confusion matrix approaches singularity.
+
 ### 4.2 Deterministic versus superposition circuit comparison
 
 The circuit comparison experiment compares mitigation behavior for:
@@ -150,7 +152,7 @@ The experiment tests whether compilation changes:
 Result file:
 - `experiments/results/compilation_comparison_results.csv`
 
-The current readout-only noise model means this experiment is expected to show gate-count reduction without a major error difference between optimized and unoptimized circuits.
+Because the current framework models readout noise only, the experiment is expected to demonstrate gate-count reduction without a substantial difference in observed noisy or mitigated error.
 
 ### 4.4 Figure and result index
 
@@ -182,7 +184,7 @@ As expected, noisy error increased as the readout flip probability increased. At
 
 However, mitigation performance degraded as the flip probability approached `0.5`. This behavior is expected because the confusion matrix becomes nearly singular near this limit, making the inverse correction numerically unstable.
 
-Overall, the experiment demonstrates that confusion-matrix-based mitigation can substantially reduce readout bias when measurement noise remains within a numerically stable regime.
+Overall, the experiment demonstrates that confusion-matrix-based mitigation can substantially reduce readout bias when measurement noise remains within a numerically stable regime. The associated visualization makes the mitigation trend particularly clear by directly comparing noisy and mitigated error across increasing noise levels.
 
 ### 5.2 Deterministic versus superposition circuits
 
@@ -194,7 +196,7 @@ The deterministic circuit ideally produces a single measurement outcome with pro
 
 The results showed that mitigation improved both circuit types, but the superposition experiment provided a more informative demonstration of probabilistic quantum behavior. Because the ideal distribution is not concentrated entirely on one bitstring, the superposition circuit better illustrates how readout noise distorts measurement probabilities.
 
-This experiment also demonstrated that the statevector simulation workflow integrates cleanly with the mitigation pipeline.
+This experiment also demonstrated that the statevector simulation workflow integrates cleanly with the mitigation pipeline. The comparison visualization also demonstrates that probabilistic circuits provide a more informative mitigation benchmark than fully deterministic measurement distributions.
 
 ### 5.3 Compilation comparison experiment
 
