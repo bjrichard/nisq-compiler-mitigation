@@ -240,9 +240,9 @@ The project therefore succeeds as a transparent experimental framework for study
 
 ## 6. Limitations
 
-This project intentionally prioritizes transparency and educational value over realism and scale.
+This project intentionally prioritizes transparency, reproducibility, and architectural clarity over realism, scale, or physical accuracy.
 
-The current implementation is limited to:
+The current framework is intentionally constrained to:
 - single-qubit statevector simulation
 - a readout-only noise model
 - simple compilation passes
@@ -254,17 +254,17 @@ The readout noise model captures measurement bit flips but does not model:
 - crosstalk
 - time-dependent error accumulation
 
-As a result, compilation-based circuit simplification does not substantially affect measured error under the current framework. More realistic noise models would likely introduce stronger relationships between circuit depth and observed output fidelity.
+As a result, compilation-based circuit simplification does not substantially affect measured noisy output distributions under the current framework. More realistic noise models would likely introduce stronger relationships between circuit depth and observed output fidelity.
 
 The mitigation workflow is also limited to single-qubit confusion-matrix inversion. As noise levels approach a flip probability of `0.5`, the confusion matrix becomes singular or nearly singular, making inversion unstable.
 
-Finally, the project is designed as a minimal research-style experimentation framework rather than a production quantum SDK. Many optimizations, abstractions, and validation layers expected in large-scale systems are intentionally omitted.
+The repository should therefore be interpreted as a minimal research-style experimentation framework rather than a production quantum SDK. Many optimizations, abstractions, and validation layers expected in large-scale systems are intentionally omitted.
 
 ## 7. Future work
 
-Several extensions would significantly improve the realism and scope of the current framework.
+Several extensions would improve both the physical realism and experimental usefulness of the framework.
 
-Potential future directions include:
+Potential future extensions include:
 - multi-qubit statevector simulation
 - gate-level noise modeling
 - depth-sensitive error accumulation
@@ -274,9 +274,11 @@ Potential future directions include:
 - calibration-based confusion matrix estimation
 - experiment configuration through external YAML or JSON files
 
+A particularly important next step would be introducing gate-level physical noise into the simulation workflow. This would make compilation quality more experimentally meaningful by allowing circuit depth and gate count to influence observable output fidelity.
+
 The compilation comparison experiment also motivates future studies exploring how optimization affects circuit fidelity under more realistic physical noise models.
 
-Another natural extension would be comparison against conceptual behavior from established quantum software frameworks such as Qiskit or Cirq.
+Another natural extension would be conceptual comparison against established quantum software frameworks such as Qiskit or Cirq in order to evaluate differences in abstraction, workflow structure, and experiment reproducibility.
 
 ## 8. Responsible AI usage
 
@@ -313,6 +315,8 @@ The experiments show that confusion-matrix-based mitigation can substantially re
 At the same time, the compilation comparison experiment highlights an important limitation of the current framework: because the implemented noise model is readout-only, circuit simplification does not yet strongly affect observed experimental error.
 
 Overall, the project establishes a strong foundation for future work involving more realistic noise models, larger circuit systems, and deeper studies of the interaction between compilation and mitigation in noisy quantum environments.
+
+Although intentionally limited in scope, the project demonstrates how compiler abstractions, probabilistic simulation, measurement noise, and mitigation workflows can be integrated into a coherent experimental software pipeline.
 
 ## Appendix A. Repository artifacts
 
