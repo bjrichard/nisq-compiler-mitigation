@@ -642,3 +642,20 @@ Suggest one improvement.
 
 Do not rewrite the documentation.
 Provide critique only.
+
+---
+
+# Figure Quality and Interpretation Review Prompt
+
+Review these figure discussion updates for clarity, technical tone, and usefulness.
+
+Specifically evaluate:
+- whether the report explains the figures clearly
+- whether the interpretation language matches the actual experiments
+- whether the compilation comparison framing is technically accurate
+- whether the report now better connects visualizations to conclusions
+
+Suggest one improvement.
+
+Do not rewrite the report.
+Provide critique only.
