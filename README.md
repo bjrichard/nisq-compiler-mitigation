@@ -342,3 +342,35 @@ For a quick review, start with:
 3. `experiments/scripts/` for reproducible experiment entry points.
 4. `experiments/results/` for generated CSVs and plots.
 5. `tests/` for validation coverage.
+
+---
+
+## Project retrospective
+
+A major goal of this project was learning how to connect:
+- software architecture
+- experimentation
+- quantitative interpretation
+- technical communication
+
+The repository evolved substantially during development. Early stages focused primarily on implementing isolated components, while later stages emphasized:
+- experiment design
+- reproducibility
+- documentation quality
+- scientific interpretation
+- architectural consistency
+
+One important outcome was recognizing the limitations of the current readout-only noise model. This insight helped clarify which future extensions would be most meaningful, particularly gate-level physical noise and deeper compilation-aware experiments.
+
+---
+
+## Potential next directions
+
+Natural follow-on projects include:
+- multi-qubit statevector simulation
+- gate-level physical noise modeling
+- noise-aware compilation
+- routing and transpilation workflows
+- variational quantum algorithms
+- benchmarking against Qiskit or Cirq
+- tensor-network-based simulation approaches
