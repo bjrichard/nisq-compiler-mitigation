@@ -763,3 +763,20 @@ Suggest one improvement.
 
 Do not rewrite the report.
 Provide critique only.
+
+---
+
+# Final Project Retrospective Review Prompt
+
+Review this final project retrospective and portfolio positioning update for clarity, professionalism, and technical honesty.
+
+Specifically evaluate:
+- whether the retrospective reflects meaningful engineering growth
+- whether the repository scope is framed appropriately
+- whether the next-project directions follow naturally from the current implementation
+- whether the project now feels complete as a portfolio artifact
+
+Suggest one improvement.
+
+Do not rewrite the documentation.
+Provide critique only.
