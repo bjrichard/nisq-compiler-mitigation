@@ -693,3 +693,20 @@ Suggest one improvement.
 
 Do not rewrite the report.
 Provide critique only.
+
+---
+
+# Week 9 Portfolio Readiness Review Prompt
+
+Review these Week 9 checkpoint updates for professionalism, clarity, and portfolio readiness.
+
+Specifically evaluate:
+- whether the repository positioning is clear
+- whether the project maturity is described honestly
+- whether the README and report now feel externally reviewable
+- whether the documentation appropriately frames the project scope
+
+Suggest one improvement.
+
+Do not rewrite the documentation.
+Provide critique only.
