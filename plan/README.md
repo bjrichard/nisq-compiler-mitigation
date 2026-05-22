@@ -21,6 +21,25 @@ This project was developed as part of a structured quantum computing and softwar
 
 ---
 
+## Quick start
+
+From the repository root:
+
+```bash
+pytest
+python -m experiments.scripts.run_noise_sweep
+python -m experiments.scripts.save_circuit_comparison_results
+python -m experiments.scripts.plot_circuit_comparison_results
+python -m experiments.scripts.run_compilation_comparison
+```
+
+Generated artifacts are written to:
+```text
+experiments/results
+```
+
+---
+
 ## Why this project exists
 
 Many quantum computing tutorials focus on isolated concepts or notebook-style demonstrations. This project instead emphasizes:
@@ -36,6 +55,26 @@ The goal is not to compete with production quantum SDKs, but to build a minimal 
 - readout noise
 - mitigation workflows
 - quantitative experiment analysis
+
+---
+
+## Project question
+
+How do compilation structure, readout noise, and measurement error mitigation jointly affect observable outcome distributions in small quantum circuits?
+
+---
+
+## What this project demonstrates
+
+This project demonstrates:
+- Python package organization for a technical computing project
+- object-oriented circuit representation
+- compiler-pass design
+- simple quantum state simulation
+- readout-noise modeling
+- measurement-error mitigation
+- reproducible experiment workflows
+- technical reporting and interpretation
 
 ---
 
@@ -292,3 +331,14 @@ Future work includes:
 - correlated errors
 - deeper compilation benchmarking
 - larger experiment workflows
+
+---
+
+## Reviewer guide
+
+For a quick review, start with:
+1. `README.md` for project overview and usage.
+2. `report/draft.md` for methodology, results, limitations, and interpretation.
+3. `experiments/scripts/` for reproducible experiment entry points.
+4. `experiments/results/` for generated CSVs and plots.
+5. `tests/` for validation coverage.
