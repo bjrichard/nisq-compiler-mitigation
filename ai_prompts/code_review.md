@@ -727,3 +727,21 @@ Suggest one improvement.
 
 Do not rewrite the plotting code.
 Provide critique only.
+
+---
+
+# GitHub Presentation Review Prompt
+
+Review this final README presentation pass for clarity, scanability, and external-review usefulness.
+
+Specifically evaluate:
+- whether a reviewer can understand the project quickly
+- whether the quick-start commands are useful
+- whether the project question is prominent enough
+- whether the reviewer guide helps navigate the repository
+- whether the README feels professional without overselling the project
+
+Suggest one improvement.
+
+Do not rewrite the README.
+Provide critique only.
