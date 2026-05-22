@@ -710,3 +710,20 @@ Suggest one improvement.
 
 Do not rewrite the documentation.
 Provide critique only.
+
+---
+
+# Plot and Artifact Review Prompt
+
+Review the generated experiment artifacts and visualization workflow for clarity and professionalism.
+
+Specifically evaluate:
+- whether artifact naming is consistent
+- whether plots are readable and appropriately labeled
+- whether experiment outputs align with report references
+- whether the repository artifact structure is easy to understand
+
+Suggest one improvement.
+
+Do not rewrite the plotting code.
+Provide critique only.
