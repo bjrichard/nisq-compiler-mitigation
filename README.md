@@ -1,31 +1,60 @@
 # NISQ Compiler Mitigation
 
-A minimal research-style quantum experimentation framework exploring how compilation structure, readout noise, and measurement error mitigation jointly affect observable outcome distributions in small quantum circuits.
+A compact quantum experimentation framework for studying how quantum-circuit compilation, readout noise, and measurement-error mitigation interact to affect observed measurement distributions.
 
-The project combines:
-- compiler abstractions
-- statevector simulation
-- readout noise modeling
-- measurement error mitigation
-- reproducible experiments
-- technical reporting
+The framework includes:
 
-The repository was developed as part of a structured transition program focused on quantum computing, software engineering, and research-oriented technical communication.
+- object-oriented circuit representations
+- compiler-pass abstractions and optimization passes
+- single-qubit statevector simulation
+- configurable readout-noise model
+- confusion-matrix-based measurement mitigation
+- reproducible experiment pipelines
+- automated tests and technical reporting
 
-This project was developed as part of a structured quantum computing and software engineering transition program focused on:
-- clean Python architecture
-- compiler abstractions
-- reproducible experimentation
-- technical reporting
-- disciplined AI-assisted development
+## Research question
 
----
+How do circuit compilation, readout noise, and measurement-error mitigation jointly affect observed outcome distributions in small quantum circuits?
+
+The experiments test whether compiler transformations alter noisy and mitigated outcomes under the project’s current readout-noise model.
+
+## Motivation
+
+Compilation, noise, and mitigation are often studied independently. This project provides a compact framework for testing how these layers interact within a single reproducible workflow.
+
+The implementation is intentionally small enough to remain transparent while still separating circuit representation, compilation, execution, noise, mitigation, experimentation, and reporting.
+
+## Key findings
+
+Within the tested single-qubit, readout-noise setting:
+
+- Measurement-error mitigation reduces distribution error across the tested readout-noise range.
+- Mitigation behavior differs between deterministic and superposition-state measurement distributions.
+- Compiler optimizations preserve ideal circuit behavior while reducing gate count.
+- Under the current readout-only noise model, gate-count reduction does not materially reduce measurement error, highlighting the need for gate-level noise modeling in future work.
+
+## Implemented components
+
+| Area | Implementation |
+|---|---|
+| Circuit representation | `Qubit`, `Gate`, and `Circuit` abstractions |
+| Compilation | Pass manager and circuit-optimization passes |
+| Simulation | Single-qubit statevector simulation |
+| Noise | Configurable readout bit-flip model |
+| Mitigation | Confusion-matrix inversion |
+| Experiments | Reproducible scripts, CSV outputs, and plots |
+| Validation | Automated tests with `pytest` |
+| Reporting | Technical report covering methods, results, and limitations |
 
 ## Quick start
 
 From the repository root:
 
 ```bash
+conda create -n qc_compiler_em python=3.11
+conda activate qc_compiler_em
+pip install -r requirements.txt
+
 pytest
 python -m experiments.scripts.run_noise_sweep
 python -m experiments.scripts.save_circuit_comparison_results
@@ -33,90 +62,11 @@ python -m experiments.scripts.plot_circuit_comparison_results
 python -m experiments.scripts.run_compilation_comparison
 ```
 
-Generated artifacts are written to:
-```text
-experiments/results
-```
+Generated results are written to:
 
----
+[`experiments/results/`](experiments/results/)
 
-## Why this project exists
-
-Many quantum computing tutorials focus on isolated concepts or notebook-style demonstrations. This project instead emphasizes:
-- reusable architecture
-- experiment reproducibility
-- transparent implementation
-- technical interpretation
-- disciplined iteration
-
-The goal is not to compete with production quantum SDKs, but to build a minimal framework that clearly demonstrates the interaction between:
-- compilation
-- probabilistic execution
-- readout noise
-- mitigation workflows
-- quantitative experiment analysis
-
----
-
-## Project question
-
-How do compilation structure, readout noise, and measurement error mitigation jointly affect observable outcome distributions in small quantum circuits?
-
----
-
-## What this project demonstrates
-
-This project demonstrates:
-- Python package organization for a technical computing project
-- object-oriented circuit representation
-- compiler-pass design
-- simple quantum state simulation
-- readout-noise modeling
-- measurement-error mitigation
-- reproducible experiment workflows
-- technical reporting and interpretation
-
----
-
-## Current project status
-
-Current implemented components include:
-- circuit IR abstractions (`Qubit`, `Gate`, `Circuit`)
-- compiler-pass infrastructure and pass manager
-- circuit optimization passes
-- single-qubit statevector simulation
-- readout noise modeling
-- confusion-matrix-based mitigation
-- experiment workflows and CSV result generation
-- visualization scripts
-- technical report drafting
-
-Current experiments include:
-- readout noise sweep experiments
-- deterministic versus superposition circuit comparisons
-- compilation comparison experiments
-
----
-
-## Key technical themes
-
-This repository focuses on several core engineering and research themes:
-
-| Theme | Current implementation |
-|---|---|
-| Circuit IR design | `Qubit`, `Gate`, and `Circuit` abstractions |
-| Compilation | Pass manager and optimization passes |
-| Simulation | Single-qubit statevector workflow |
-| Noise modeling | Readout bit-flip noise |
-| Mitigation | Confusion-matrix inversion |
-| Experimentation | CSV generation and reproducible scripts |
-| Reporting | Technical report and figure interpretation |
-
----
-
-## Repository structure overview
-
-The repository is organized to separate reusable source code, experiment workflows, generated artifacts, tests, and technical reporting.
+## Repository structure
 
 ```text
 src/qc_compiler/
@@ -134,99 +84,25 @@ experiments/
 tests/
 
 report/
+
+docs/
 ```
 
----
+## Experiments
 
-## Key experiments
+### Readout-noise sweep
 
-### Noise sweep experiment
+Measures noisy and mitigated distribution error as the readout-flip probability increases.
 
-Studies how increasing readout flip probability affects:
-- noisy measurement error
-- mitigated measurement error
+### Circuit-distribution comparison
 
-Outputs:
-- CSV results
-- visualization plot
+Compares mitigation behavior for deterministic and superposition-state circuits.
 
-### Circuit comparison experiment
+### Compilation comparison
 
-Compares:
-- deterministic measurement circuits
-- probabilistic superposition circuits
+Compares circuits before and after optimization passes, verifies preservation of ideal behavior, and measures changes in gate count.
 
-Demonstrates how readout mitigation behaves under different probability distributions.
-
-### Compilation comparison experiment
-
-Compares:
-- unoptimized circuits
-- optimized circuits after compiler passes
-
-Demonstrates that compiler transformations preserve ideal behavior while reducing gate count.
-
-Under the current readout-only noise model, compilation depth reduction does not substantially affect observed error, motivating future gate-level noise modeling.
-
----
-
-## Technical report
-
-Current report draft:
-
-```text
-report/draft.md
-```
-
-The report includes:
-- methodology
-- experiment descriptions
-- quantitative interpretation
-- limitations
-- future work discussion
-
----
-
-## Installation
-
-Create and activate the project environment:
-
-```bash
-conda create -n qc_compiler_em python=3.11
-conda activate qc_compiler_em
-```
-
-Install development dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Running experiments
-
-Example:
-
-```bash
-python -m experiments.scripts.run_noise_sweep
-```
-
-Other experiment scripts are located in:
-
-```text
-experiments/scripts/
-```
-
----
-
-## Running tests
-
-```bash
-pytest
-```
-
----
+Because the current model includes readout noise only, circuit-depth reduction does not materially change observed error. This result motivates future gate-level noise experiments.
 
 ## Reproducibility
 
@@ -237,140 +113,69 @@ experiments/config.py
 ```
 
 Current defaults include:
+
 - fixed random seeds
 - standardized shot counts
-- shared noise sweep levels
+- shared noise-sweep levels
 
 Generated experiment artifacts are stored in:
 
-```text
-experiments/results/
-```
+[`experiments/results/`](experiments/results/)
 
 Primary experiment entry points:
+
 - `run_noise_sweep.py`
 - `run_circuit_comparison.py`
 - `run_compilation_comparison.py`
 
----
+Recommended workflow:
 
-## Report workflow
+1. Run the test suite.
+2. Run or regenerate experiments.
+3. Review generated CSV files and plots.
+4. Update the technical report interpretation.
+5. Rerun the test suite.
+
+## Technical report
 
 The technical report draft is maintained in:
 
-```text
-report/draft.md
-```
+[`report/draft.md`](report/draft.md)
 
-The report references generated experiment artifacts stored in:
+It covers:
 
-```text
-experiments/results/
-```
-
-Recommended workflow:
-1. run experiments
-2. regenerate plots/results
-3. update report interpretation
-4. rerun tests
-
----
-
-## AI-assisted development
-
-AI tools were used for:
-- planning
-- code review prompts
-- debugging support
-- learning reinforcement
-- architecture discussion
-
-Final implementation decisions and validation were performed manually.
-
----
-
-## Current project maturity
-
-The current repository should be viewed as:
-- a research-style prototype
-- a software engineering learning project
-- a reproducible experimentation framework
-- a portfolio demonstration of architecture and technical communication skills
-
-It is intentionally scoped smaller than a production quantum SDK.
-
----
-
-## Current repository state
-
-At the end of Week 9, the repository includes:
-- reusable experiment infrastructure
-- reproducible result generation
-- visualization workflows
-- a structured technical report
-- documented limitations and future work
-- portfolio-oriented project documentation
-
-The remaining work is focused primarily on final polish, presentation quality, and optional future extensions.
-
----
-
-## Current limitations
-
-The current framework intentionally prioritizes transparency and educational value over realism and scale.
-
-Current limitations include:
-- single-qubit simulation only
-- readout-only noise modeling
-- limited compilation passes
-- simplified mitigation workflow
-
-Future work includes:
-- multi-qubit simulation
-- gate-level noise
-- correlated errors
-- deeper compilation benchmarking
-- larger experiment workflows
-
----
-
-## Reviewer guide
-
-For a quick review, start with:
-1. `README.md` for project overview and usage.
-2. `report/draft.md` for methodology, results, limitations, and interpretation.
-3. `experiments/scripts/` for reproducible experiment entry points.
-4. `experiments/results/` for generated CSVs and plots.
-5. `tests/` for validation coverage.
-
----
-
-## Project retrospective
-
-A major goal of this project was learning how to connect:
-- software architecture
-- experimentation
-- quantitative interpretation
-- technical communication
-
-The repository evolved substantially during development. Early stages focused primarily on implementing isolated components, while later stages emphasized:
+- methodology
 - experiment design
-- reproducibility
-- documentation quality
-- scientific interpretation
-- architectural consistency
+- quantitative results
+- interpretation
+- limitations
+- future work
 
-One important outcome was recognizing the limitations of the current readout-only noise model. This insight helped clarify which future extensions would be most meaningful, particularly gate-level physical noise and deeper compilation-aware experiments.
+## Limitations
 
----
+The current implementation is intentionally scoped to:
 
-## Potential next directions
+- single-qubit statevector simulation
+- readout-only noise
+- independent bit-flip errors
+- a limited set of compiler passes
+- confusion-matrix-based mitigation
 
-Natural follow-on projects include:
-- multi-qubit statevector simulation
-- gate-level physical noise modeling
-- noise-aware compilation
-- routing and transpilation workflows
-- variational quantum algorithms
-- benchmarking against Qiskit or Cirq
-- tensor-network-based simulation approaches
+Future extensions could include multi-qubit simulation, gate-level and correlated noise, routing, noise-aware compilation, and comparison with established software development kits such as Qiskit or Cirq.
+
+## Development process
+
+This project was developed as part of a structured transition program focused on quantum computing, software engineering, and research-oriented technical communication.
+
+AI-assisted tools supported planning, debugging, architecture review, and documentation. Final implementation decisions, validation, and interpretation were performed manually.
+
+See [`docs/development_process.md`](docs/development_process.md) for additional detail.
+
+## Repository guide
+
+- `src/qc_compiler/` — reusable framework code
+- `experiments/scripts/` — experiment entry points
+- `experiments/results/` — generated CSV files and plots
+- `tests/` — automated validation
+- `report/draft.md` — methodology, results, and interpretation
+- `docs/development_process.md` — development workflow, scope, and AI-assisted process
